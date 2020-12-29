@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Korisnik.Areas.Identity.Data
+
+@inject SignInManager<ApplicationKorisnik> SignInManager
+@inject UserManager<ApplicationKorisnik> UserManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Dobrodosli</h1>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+       
+
+            <a type="button" class="btn btn-info btn-lg" asp-area="" asp-controller="Korisnik" asp-action="ListaKorisnika">Tabela korinika</a>
+
+        
+    }
+</div>
+
