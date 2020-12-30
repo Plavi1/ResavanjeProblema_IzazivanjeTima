@@ -29,9 +29,9 @@ namespace Korisnik
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddScoped<IKorisnikRepository, SQLKorisnikRepository>();
-            services.AddScoped<IIzazoviRepository, SQLIzazoviRepository>();
-            services.AddRazorPages();    //Dodali
+            services.AddScoped<IKorisnikRepository, SQLKorisnikRepository>();                    //Dodali Dependency Injection
+            services.AddScoped<IIzazoviRepository, SQLIzazoviRepository>();                      //Dodali Dependency Injection
+            services.AddRazorPages();                                                            //Dodali
             services.AddControllersWithViews();
         }
          
@@ -53,7 +53,7 @@ namespace Korisnik
 
             app.UseRouting();
 
-            app.UseAuthentication();          //Dodali
+            app.UseAuthentication();                                                       // Dodali
 
             app.UseAuthorization();           
 
@@ -62,7 +62,7 @@ namespace Korisnik
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();    // Dodali 
+                endpoints.MapRazorPages();                                                 // Dodali 
             });
         }
     }

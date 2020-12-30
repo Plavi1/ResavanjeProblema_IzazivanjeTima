@@ -1,0 +1,69 @@
+﻿@using Korisnik.ViewModel;
+@model SveTabele
+@{ ViewData["Title"] = "SveTabele";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{ int i = 1; }
+
+<h1>Lista  Korisnika</h1>
+
+@if (Model.ApplicationKorisnik.Any())
+{
+    <table class="table table-dark">
+
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ime</th>
+                <th scope="col">Prezime</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var list in Model.ApplicationKorisnik)
+            {
+                <tr>
+                    <td>@Convert.ToString(i++)</td>
+                    <td>@list.Ime</td>
+                    <td>@list.Prezime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>NEMA REGISTROVANIH KORISNIKA</h2>
+}
+ 
+
+<h1>Lista  Izazova</h1>
+
+@if (Model.Izazovi.Any())
+{
+    <table class="table table-dark">
+
+        <thead>
+            <tr>
+                <th scope="col">ID-Izazova</th>
+                <th scope="col">ID-Izazivaoca</th>
+                <th scope="col">ID-Izazvanog</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var lista in Model.Izazovi)
+            {
+                <tr>
+                    <td>@lista.IdIzazova</td>
+                    <td>@lista.IdIzazivaoca</td>
+                    <td>@lista.IdIzazavanog</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>TRENUTNO NEMA IZAZOVA</h2>
+}
+ 
