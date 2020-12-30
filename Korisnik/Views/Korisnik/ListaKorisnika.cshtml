@@ -8,52 +8,49 @@
 
 <h1>Lista  Korisnika</h1>
 
-
 @if (Model.ApplicationKorisnik.Any())
 
 {<form method="post">
-        <table class="table table-dark">
+    <table class="table table-dark">
 
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Ime</th>
-                    <th scope="col">Prezime</th>
-                    <th scope="col">Stikliraj</th>
-                </tr>
-            </thead>
-            <tbody>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ime</th>
+                <th scope="col">Prezime</th>
+                <th scope="col">Stikliraj</th>
+            </tr>
+        </thead>
+        <tbody>
 
-                @foreach (var list in Model.ApplicationKorisnik)
-                {
-                    <tr>
-                        <td>@Convert.ToString(i++)</td>
-                        <td>@list.Ime</td>
-                        <td>@list.Prezime</td>
+            @foreach (var list in Model.ApplicationKorisnik)
+            {
+<tr>
+    <td>@Convert.ToString(i++)</td>
+    <td>@list.Ime</td>
+    <td>@list.Prezime</td>
 
-                        <td>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <input asp-for="IsChecked" />
-                                    <input hidden asp-for="IdIzazvanog" value="@list.Id" />
-                                </div>
-                            </div>
-                        </td>
-
-                    </tr>
-                }
-
-            </tbody>
-
-        </table>
+    <td>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Posalji</button>
+            <div class="checkbox">
+                <input asp-for="IdIzazvanog" value="@list.Id" type="checkbox" />
+            </div>
         </div>
-        <div asp-validation-summary="All"></div>
-    </form> }
+    </td>
+
+</tr>                
+}
+</tbody>
+
+    </table>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Posalji</button>
+        <span class="text-danger">@Model.ErrorPoruka</span>       
+    </div>
+</form> }
 else
 {
-    <h2>NEMA REGISTROVANIH KORISNIKA</h2>}
+    <h2>NEMA DRUGIH REGISTROVANIH KORISNIKA</h2>}
 @section Scripts{
     <script>
         $("input:checkbox").on('click', function () {

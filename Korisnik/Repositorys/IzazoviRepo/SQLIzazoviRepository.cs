@@ -18,7 +18,6 @@ namespace Korisnik.Repositorys.IzazoviRepo
 
         public Izazovi AddIzazovi(Izazovi izazovi)
         {
-          
             context.Izazovi.Add(izazovi);
             context.SaveChanges();
             return izazovi;

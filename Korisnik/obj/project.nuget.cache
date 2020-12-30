@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gle1wEVQl2JmxfG4Q8tt8QEYsXiqoPj540IJ1OTXb6tM9Uj9vCPVzy3HVGTcEH8D4VSxqR2sgLIR9ePR4TvVTg==",
+  "dgSpecHash": "MbCVdqFg6qYi3MQ6tk4elxOXuKrMx/t2j/AkYj+8GpGvd07WYNcLHZ2bJcjJD+aAIwusygsTPcXXG3Kguzhkxg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pc\\Desktop\\ASP.NET Core MVC VEZBA\\1.ZADATAK\\ResavanjeProblema_IzazivanjeTima-main\\Korisnik\\Korisnik.csproj",
+  "projectFilePath": "C:\\Users\\pc\\Desktop\\ASP.NET Core MVC VEZBA\\1.ZADATAK\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pc\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.1\\microsoft.aspnetcore.cryptography.internal.5.0.1.nupkg.sha512",

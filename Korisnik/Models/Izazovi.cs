@@ -7,16 +7,16 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Korisnik.Models
-{
-    [Table("tblIzazovi")]
+{ 
     public class Izazovi
     {
         [Key]
         [Column(Order = 0)]
         public int IdIzazova { get; set; }
+        [Required]
         [Column(Order = 1)]
-        public string IdIzazivaoca { get; set; }
-
+        public string IdIzazivaoca { get; set; }        
+        [Required]
         [Column(Order = 2)]
         public string IdIzazavanog { get; set; }
 

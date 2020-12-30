@@ -21,9 +21,7 @@ namespace Korisnik.Controllers
         public KorisnikController(UserManager<ApplicationKorisnik> userManager,
                                   IKorisnikRepository korisnikRepository,
                                   IIzazoviRepository izazoviRepository)
-
         {
-
             this.userManager = userManager;
             this.korisnikRepository = korisnikRepository;
             this.izazoviRepository = izazoviRepository;
@@ -35,28 +33,40 @@ namespace Korisnik.Controllers
         public ViewResult ListaKorisnika()
         {
             ListaKorisnikaViewModel mymodel = new ListaKorisnikaViewModel();
-            var ruser = userManager.GetUserId(HttpContext.User);
-            var lista = korisnikRepository.SviKorisnici().Where(e => e.Id != ruser);
-            mymodel.ApplicationKorisnik = lista;
 
-            return View(mymodel);
+            var ruser = userManager.GetUserId(HttpContext.User);                                 // Nalazi ID ulogovanog    
+            var lista = korisnikRepository.SviKorisnici().Where(e => e.Id != ruser);             // Svi korisnici izuzev ulogovanog korisnika
+
+            mymodel.ApplicationKorisnik = lista;                                                 // Prebacujemo u nas ViewModel vrednost za ApplicationKorisnik
+
+            return View(mymodel);                                                                // Saljemo ceo ViewModel koji sadrzi sve bitne informacije za nas View
         }
+
+
         [HttpPost]
         [Authorize]
-        public IActionResult ListaKorisnika(ListaKorisnikaViewModel model)
+        public IActionResult ListaKorisnika(ListaKorisnikaViewModel model)                       // Dolaze nam informacije iz nase forme na View stranci
         {
-            if (ModelState.IsValid)
+            
+            if (model.IdIzazvanog != "false")                                                    // Nama je samo bitan IdIzazvanog zato proveravamo da li je vrednost "false" da bi nastavili
             {
-                Izazovi novIzazov = new Izazovi()
+
+                Izazovi novIzazov = new Izazovi()                                                // Ako je prosledjen IdIzazvanog automatcki pravimo nov model koji zelimo da ubacimo u Db
                 {
-                    IdIzazavanog = model.IdIzazvanog,
-                    IdIzazivaoca = userManager.GetUserId(HttpContext.User),
+                    IdIzazavanog = model.IdIzazvanog,                                            //         Ubacujemo sve vrednosti 
+                    IdIzazivaoca = userManager.GetUserId(HttpContext.User),                      //          koje sadrzi nas model
                 };
-                izazoviRepository.AddIzazovi(novIzazov);
-                return RedirectToAction("Home");
+                izazoviRepository.AddIzazovi(novIzazov);                                         // Pozivamo nas Repository da zelim da dodamo nov izazov u bazu podataka
+                return RedirectToAction("Index", "Home");                                        // Vracamo se na pocetnu stranu
+
             }
 
-            return View();
+            var ruser = userManager.GetUserId(HttpContext.User);                                           // Opet nam treba Id logovanog [PROMENITI AKO SE BUDE PONAVLJALO]
+            model.ApplicationKorisnik = korisnikRepository.SviKorisnici().Where(e => e.Id != ruser);       // Dodeljivanje vrednosti bez Id logovanog [MOZDA POSTOJI TAG-HELPER KOJI DAJE ISTU VREDNOST]
+            model.ErrorPoruka = "Nisi selektovao ni jednog korisnika!";                                    // Ubaceno zato sto ne funkcionise asp-validation-for, [MOGUCE DA NEGDE GRESIM, PRONACI DRUGO RESENJE]
+
+
+            return View(model);
         }
 
 
