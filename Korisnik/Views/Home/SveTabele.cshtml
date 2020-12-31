@@ -3,6 +3,7 @@
 @{ ViewData["Title"] = "SveTabele";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 @{ int i = 1; }
+@{ int c = 1; }
 
 <h1>Lista  Korisnika</h1>
 
@@ -40,30 +41,39 @@ else
 
 @if (Model.Izazovi.Any())
 {
+<form method="post">
     <table class="table table-dark">
 
         <thead>
             <tr>
-                <th scope="col">ID-Izazova</th>
+                <th scope="col">#</th>
                 <th scope="col">ID-Izazivaoca</th>
                 <th scope="col">ID-Izazvanog</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-
             @foreach (var lista in Model.Izazovi)
             {
                 <tr>
-                    <td>@lista.IdIzazova</td>
+                    <td>@Convert.ToString(c++)</td>
                     <td>@lista.IdIzazivaoca</td>
                     <td>@lista.IdIzazavanog</td>
+                    <td>
+                        <div class="form-group">
+                             <input hidden asp-for="id" value="@lista.IdIzazova" />  
+                            <button class="btn btn-danger" type="submit">Obrisi</button>
+                        </div>
+                    </td>
                 </tr>
             }
+
         </tbody>
     </table>
-}
-else
-{
+ </form>
+    }
+    else
+    {
     <h2>TRENUTNO NEMA IZAZOVA</h2>
-}
- 
+    }
+

@@ -11,5 +11,6 @@ namespace Korisnik.ViewModel
     {
         public IEnumerable<Izazovi> Izazovi { get; set; }
         public IEnumerable<ApplicationKorisnik> ApplicationKorisnik { get; set; }
+        public int id { get; set; }
     }
 }

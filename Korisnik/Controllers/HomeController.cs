@@ -27,7 +27,7 @@ namespace ASPNETCOREMVC.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public IActionResult SveTabele()                                                      //
         {                                                                                     // 
             SveTabele sveTabele = new SveTabele                                               //     PROST PRIKAZ SVIH TABELA IZ Micrsoft SQL Servera
@@ -36,6 +36,20 @@ namespace ASPNETCOREMVC.Controllers
                 Izazovi = izazoviRepository.SviIzazovi()                                      // 
             };                                                                                //
             return View(sveTabele);                                                           //
+        }
+        [HttpPost]
+        public IActionResult SveTabele(SveTabele sve)
+        {
+            
+            izazoviRepository.Delete(sve.id);
+
+            SveTabele sveTabele = new SveTabele                                              
+            {                                                                                
+                ApplicationKorisnik = korisnikRepository.SviKorisnici(),                      
+                Izazovi = izazoviRepository.SviIzazovi()                                      
+            };
+
+            return View(sveTabele);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
