@@ -26,6 +26,19 @@ namespace Korisnik.Controllers
             this.korisnikRepository = korisnikRepository;
             this.izazoviRepository = izazoviRepository;
         }
+        private IEnumerable<ApplicationKorisnik> FilterPrikaza()                                 // Metoda koja se ponavlja, cilj joj je da filtrira prikaz
+        {
+            var ruser = userManager.GetUserId(HttpContext.User);                                 // Nalazi ID ulogovanog    
+            var lista = korisnikRepository.SviKorisnici().Where(e => e.Id != ruser);             // Svi korisnici izuzev ulogovanog korisnika
+            var izazovi = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == ruser);    // Svi izazovi gde se Id ulogovanog slaze sa Id-jem izazivaoca 
+
+            foreach (var item in izazovi)                                                        // {--
+            {                                                                                    // {--   Metoda koja filterise sve ID-jeve izazvanih
+                lista = lista.Where(e => e.Id != item.IdIzazavanog);                             // {--    koje je ulogovani izazvao
+            }                                                                                    // {--
+
+            return lista;
+        }
 
 
         [HttpGet]
@@ -34,14 +47,14 @@ namespace Korisnik.Controllers
         {
             ListaKorisnikaViewModel mymodel = new ListaKorisnikaViewModel();
 
-            var ruser = userManager.GetUserId(HttpContext.User);                                 // Nalazi ID ulogovanog    
-            var lista = korisnikRepository.SviKorisnici().Where(e => e.Id != ruser);             // Svi korisnici izuzev ulogovanog korisnika
-
+            IEnumerable<ApplicationKorisnik> lista = FilterPrikaza();                            // Metoda gore navedena  
+            
             mymodel.ApplicationKorisnik = lista;                                                 // Prebacujemo u nas ViewModel vrednost za ApplicationKorisnik
 
             return View(mymodel);                                                                // Saljemo ceo ViewModel koji sadrzi sve bitne informacije za nas View
         }
 
+     
 
         [HttpPost]
         [Authorize]
@@ -61,9 +74,9 @@ namespace Korisnik.Controllers
 
             }
 
-            var ruser = userManager.GetUserId(HttpContext.User);                                           // Opet nam treba Id logovanog [PROMENITI AKO SE BUDE PONAVLJALO]
-            model.ApplicationKorisnik = korisnikRepository.SviKorisnici().Where(e => e.Id != ruser);       // Dodeljivanje vrednosti bez Id logovanog [MOZDA POSTOJI TAG-HELPER KOJI DAJE ISTU VREDNOST]
-            model.ErrorPoruka = "Nisi selektovao ni jednog korisnika!";                                    // Ubaceno zato sto ne funkcionise asp-validation-for, [MOGUCE DA NEGDE GRESIM, PRONACI DRUGO RESENJE]
+            IEnumerable<ApplicationKorisnik> lista = FilterPrikaza();                            // Metoda gore navedena
+            model.ApplicationKorisnik = lista;                                                   //{ --    Dodeljujemo ViewModelu 
+            model.ErrorPoruka = "Nisi selektovao ni jednog korisnika!";                          //{ --  Ubaceno zato sto ne funkcionise asp-validation-for, [MOGUCE DA NEGDE GRESIM, PRONACI DRUGO RESENJE]
 
 
             return View(model);
