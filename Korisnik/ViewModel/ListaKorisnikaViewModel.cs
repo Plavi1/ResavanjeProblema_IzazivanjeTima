@@ -8,7 +8,7 @@ namespace Korisnik.ViewModel
         public IEnumerable<ApplicationKorisnik> ApplicationKorisnik { get; set; }
      
         public string IdIzazvanog { get; set; }
-
+        public string ImeIzazvanog { get; set; }
         public string ErrorPoruka { get; set; }
 
 

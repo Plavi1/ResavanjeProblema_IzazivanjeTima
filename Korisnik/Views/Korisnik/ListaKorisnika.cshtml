@@ -34,7 +34,8 @@
         <div class="form-group">
             <div class="checkbox">
                 <input asp-for="IdIzazvanog" value="@list.Id" type="checkbox" />
-            </div>
+                <input hidden asp-for="ImeIzazvanog" value="@list.Ime" />
+            </div>           
         </div>
     </td>
 

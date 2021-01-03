@@ -60,14 +60,18 @@ namespace Korisnik.Controllers
         [Authorize]
         public IActionResult ListaKorisnika(ListaKorisnikaViewModel model)                       // Dolaze nam informacije iz nase forme na View stranci
         {
-            
+                  
             if (model.IdIzazvanog != "false")                                                    // Nama je samo bitan IdIzazvanog zato proveravamo da li je vrednost "false" da bi nastavili
             {
+                var idUlogovanog = userManager.GetUserId(HttpContext.User);
 
                 Izazovi novIzazov = new Izazovi()                                                // Ako je prosledjen IdIzazvanog automatcki pravimo nov model koji zelimo da ubacimo u Db
                 {
-                    IdIzazavanog = model.IdIzazvanog,                                            //         Ubacujemo sve vrednosti 
-                    IdIzazivaoca = userManager.GetUserId(HttpContext.User),                      //          koje sadrzi nas model
+                    IdIzazavanog = model.IdIzazvanog,                                            // <--        
+                    IdIzazivaoca = idUlogovanog,                                                 // <--        Ubacujemo sve vrednosti
+                    ImeIzazvanog = model.ImeIzazvanog,                                           // <--         koje sadrzi nas model
+                    ImeIzazivaoca = korisnikRepository.GetKorisnik(idUlogovanog).Ime             // <--
+                    
                 };
                 izazoviRepository.AddIzazovi(novIzazov);                                         // Pozivamo nas Repository da zelim da dodamo nov izazov u bazu podataka
                 return RedirectToAction("Index", "Home");                                        // Vracamo se na pocetnu stranu

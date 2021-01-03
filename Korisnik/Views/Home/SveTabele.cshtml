@@ -3,7 +3,6 @@
 @{ ViewData["Title"] = "SveTabele";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 @{ int i = 1; }
-@{ int c = 1; }
 
 <h1>Lista  Korisnika</h1>
 
@@ -47,8 +46,8 @@ else
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">ID-Izazivaoca</th>
-                <th scope="col">ID-Izazvanog</th>
+                <th scope="col">Izazivaoc</th>
+                <th scope="col">Izazvani</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -56,9 +55,9 @@ else
             @foreach (var lista in Model.Izazovi)
             {
                 <tr>
-                    <td>@Convert.ToString(c++)</td>
-                    <td>@lista.IdIzazivaoca</td>
-                    <td>@lista.IdIzazavanog</td>
+                    <td>@lista.IdIzazova</td>
+                    <td>@lista.ImeIzazivaoca</td>
+                    <td>@lista.ImeIzazvanog</td>
                     <td>
                         <div class="form-group">
                              <input hidden asp-for="id" value="@lista.IdIzazova" />  
