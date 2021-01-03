@@ -1,14 +1,18 @@
-﻿using Korisnik.Models;
+﻿using Korisnik.Areas.Identity.Data;
+using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.ViewModel;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Linq;
 
 namespace ASPNETCOREMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UserManager<ApplicationKorisnik> userManager;
         private readonly IKorisnikRepository korisnikRepository;
         private readonly IIzazoviRepository izazoviRepository;
         private readonly ILogger<HomeController> _logger;
@@ -16,16 +20,22 @@ namespace ASPNETCOREMVC.Controllers
 
         public HomeController(ILogger<HomeController> logger, 
                               IKorisnikRepository korisnikRepository, 
-                              IIzazoviRepository izazoviRepository)
+                              IIzazoviRepository izazoviRepository,
+                              UserManager<ApplicationKorisnik> userManager)
         {
+            this.userManager = userManager;
             this.korisnikRepository = korisnikRepository;
             this.izazoviRepository = izazoviRepository;
             _logger = logger;
         }
-
-        public IActionResult Index()
+        [HttpGet]
+        public ViewResult Index(IndexViewModel model)
         {
-            return View();
+            var ruser = userManager.GetUserId(HttpContext.User);
+            var izazovi = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == ruser);
+            model.BrojIzazova = izazovi.Count().ToString();
+
+            return View(model);
         }
         [HttpGet]
         public IActionResult SveTabele()                                                      //
