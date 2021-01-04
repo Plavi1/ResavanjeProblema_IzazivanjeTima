@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ASPNETCOREMVC.Controllers
 {
@@ -48,10 +49,10 @@ namespace ASPNETCOREMVC.Controllers
             return View(sveTabele);                                                           //
         }
         [HttpPost]
-        public IActionResult SveTabele(SveTabele sve)
+        public async Task<IActionResult> SveTabele(SveTabele sve)
         {
             
-            izazoviRepository.Delete(sve.id);
+            await izazoviRepository.Delete(sve.id);
 
             SveTabele sveTabele = new SveTabele                                              
             {                                                                                

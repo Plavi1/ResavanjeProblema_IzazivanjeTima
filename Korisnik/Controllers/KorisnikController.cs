@@ -36,7 +36,7 @@ namespace Korisnik.Controllers
             {                                                                                    // {--   Metoda koja filterise sve ID-jeve izazvanih
                 lista = lista.Where(e => e.Id != item.IdIzazavanog);                             // {--    koje je ulogovani izazvao
             }                                                                                    // {--
-
+            
             return lista;
         }
 
@@ -58,7 +58,7 @@ namespace Korisnik.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult ListaKorisnika(ListaKorisnikaViewModel model)                       // Dolaze nam informacije iz nase forme na View stranci
+        public async Task<IActionResult> ListaKorisnika(ListaKorisnikaViewModel model)           // Dolaze nam informacije iz nase forme na View stranci
         {
                   
             if (model.IdIzazvanog != "false")                                                    // Nama je samo bitan IdIzazvanog zato proveravamo da li je vrednost "false" da bi nastavili
@@ -70,10 +70,10 @@ namespace Korisnik.Controllers
                     IdIzazavanog = model.IdIzazvanog,                                            // <--        
                     IdIzazivaoca = idUlogovanog,                                                 // <--        Ubacujemo sve vrednosti
                     ImeIzazvanog = model.ImeIzazvanog,                                           // <--         koje sadrzi nas model
-                    ImeIzazivaoca = korisnikRepository.GetKorisnik(idUlogovanog).Ime             // <--
+                    ImeIzazivaoca = korisnikRepository.GetKorisnik(idUlogovanog).Result.Ime      // <--
                     
                 };
-                izazoviRepository.AddIzazovi(novIzazov);                                         // Pozivamo nas Repository da zelim da dodamo nov izazov u bazu podataka
+                await izazoviRepository.AddIzazovi(novIzazov);                                         // Pozivamo nas Repository da zelim da dodamo nov izazov u bazu podataka
                 return RedirectToAction("Index", "Home");                                        // Vracamo se na pocetnu stranu
 
             }

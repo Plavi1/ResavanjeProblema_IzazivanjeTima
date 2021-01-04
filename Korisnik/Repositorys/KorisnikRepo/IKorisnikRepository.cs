@@ -10,7 +10,7 @@ namespace Korisnik.Models
     public interface IKorisnikRepository
     {
         IEnumerable<ApplicationKorisnik> SviKorisnici();
-        ApplicationKorisnik GetKorisnik (string id);
+        Task<ApplicationKorisnik> GetKorisnik (string id);
 
 
 

@@ -1,13 +1,9 @@
-﻿using Korisnik.Areas.Identity.Data;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Korisnik.Models
-{ 
+{
     public class Izazovi
     {
         [Key]
@@ -31,6 +27,8 @@ namespace Korisnik.Models
 
         [Column(Order = 4)]
         public string ImeIzazvanog { get; set; }
+
+      
 
 
 

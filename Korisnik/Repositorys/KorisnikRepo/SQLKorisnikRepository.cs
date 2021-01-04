@@ -1,10 +1,6 @@
 ﻿using Korisnik.Areas.Identity.Data;
 using Korisnik.Data;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Korisnik.Models
@@ -23,10 +19,10 @@ namespace Korisnik.Models
             
         }
 
-        public ApplicationKorisnik GetKorisnik (string id)
+        public async Task<ApplicationKorisnik> GetKorisnik (string id)
         {
           
-            return context.Users.Find(id);
+            return await context.Users.FindAsync(id);
         }
 
         public IEnumerable<ApplicationKorisnik> SviKorisnici()

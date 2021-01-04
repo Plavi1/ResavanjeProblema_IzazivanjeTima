@@ -9,9 +9,9 @@ namespace Korisnik.Repositorys.IzazoviRepo
     public interface IIzazoviRepository
     {
         IEnumerable<Izazovi> SviIzazovi();
-        Izazovi GetIzazovi(int id);
-        Izazovi AddIzazovi(Izazovi izazovi);
-        Izazovi UpdateIzazovi(Izazovi izazovPromena);
-        Izazovi Delete(int id);
+        Task<Izazovi> GetIzazovi(int id);
+        Task<Izazovi> AddIzazovi(Izazovi izazovi);
+        Task<Izazovi> UpdateIzazovi(Izazovi izazovPromena);
+        Task<Izazovi> Delete(int id);
     }
 }
