@@ -8,5 +8,6 @@ namespace Korisnik.ViewModel
     public class IndexViewModel
     {
         public string BrojIzazova { get; set; }
+        public string IzazvanBroj { get; set; }
     }
 }

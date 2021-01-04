@@ -2,6 +2,7 @@
 using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -30,11 +31,16 @@ namespace ASPNETCOREMVC.Controllers
             _logger = logger;
         }
         [HttpGet]
+        [Authorize]
         public ViewResult Index(IndexViewModel model)
         {
-            var ruser = userManager.GetUserId(HttpContext.User);
-            var izazovi = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == ruser);
-            model.BrojIzazova = izazovi.Count().ToString();
+            var user = userManager.GetUserId(HttpContext.User);
+
+            var izazovi = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == user);      //{--  Broj Izaova koje je POSLAO
+            model.BrojIzazova = izazovi.Count().ToString();                                       //{--     ulogovani korisnik
+
+            var izazvan = izazoviRepository.SviIzazovi().Where(c => c.IdIzazavanog == user);      //{--  Broj Izazova koje je DOBIO
+            model.IzazvanBroj = izazvan.Count().ToString();                                       //{--   od strane drugih korisnika
 
             return View(model);
         }
@@ -67,6 +73,17 @@ namespace ASPNETCOREMVC.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        [HttpGet]
+        [Authorize]
+        public ViewResult Izazovi()
+        {
+            var ruser = userManager.GetUserId(HttpContext.User);
+            var filter = izazoviRepository.SviIzazovi().Where(e => e.IdIzazavanog == ruser);
+            PoslatiIzazoviViewModel model = new PoslatiIzazoviViewModel();
+            model.Izazovi = filter;
+
+            return View(model);
         }
     }
 }

@@ -20,16 +20,17 @@
         <br />
         <br />
         <br />
-        <div class="btn-group-vertical">
+        <div class="btn-group-vertical h-100">
             <a type="button" class="btn btn-dark" asp-area="" asp-controller="PoslatiIzazovi" asp-action="ListaIzazovi">
                 Poslata <span class="badge badge-light col-md-3">@Model.BrojIzazova</span>
             </a>
             <a type="button" class="btn btn-info btn-lg" asp-area="" asp-controller="Korisnik" asp-action="ListaKorisnika">Posalji NOV IZAZOV</a>
-
+            @if (Model.IzazvanBroj != "0")
+            {
+             <a type="button" class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Izazovi"> DOBILI STE @Model.IzazvanBroj  </a>    
+            }
         </div>
-           
-
-        
+    
     }
 </div>
 
