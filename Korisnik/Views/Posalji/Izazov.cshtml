@@ -1,0 +1,66 @@
+﻿@using Korisnik.ViewModel
+@model PosaljiIzazovViewModel
+
+@{ ViewData["Title"] = "ListaKorisnika";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{ int i = 1; }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<h1>Lista  Korisnika</h1>
+
+@if (Model.ApplicationKorisnik.Any())
+{
+<form method="post">
+    <table class="table table-dark">
+
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ime</th>
+                <th scope="col">Prezime</th>
+                <th scope="col">Stikliraj</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var list in Model.ApplicationKorisnik)
+            {
+<tr>
+    <td>@Convert.ToString(i++)</td>
+    <td>@list.Ime</td>
+    <td>@list.Prezime</td>
+
+    <td>
+        <div class="form-group">
+            <input asp-for="IdIzazvanog" value="@list.Id" type="checkbox" />
+        </div>
+    </td>
+
+</tr>
+}
+        </tbody>
+
+    </table>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Posalji</button> <a type="button" asp-controller="home" asp-action="Index" class="btn btn-secondary btn-sm">Pocetna</a>
+        <span class="text-danger">@Model.ErrorPoruka</span>
+    </div>
+</form> }
+else
+{
+<h2>NEMA DRUGIH REGISTROVANIH KORISNIKA</h2>
+                <a type="button" asp-controller="home" asp-action="Index" class="btn btn-secondary">Pocetna</a>}
+
+
+@section Scripts{
+    <script>$("input:checkbox").on('click', function () {
+            var $box = $(this);
+            if ($box.is(":checked")) {
+                var group = "input:checkbox[name='" + $box.attr("name") + "']";
+                $(group).prop("checked", false);
+                $box.prop("checked", true);
+            } else {
+                $box.prop("checked", false);
+            }
+        });</script>
+}

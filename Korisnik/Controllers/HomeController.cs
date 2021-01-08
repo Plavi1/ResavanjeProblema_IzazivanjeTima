@@ -74,16 +74,5 @@ namespace ASPNETCOREMVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        [HttpGet]
-        [Authorize]
-        public ViewResult Izazovi()
-        {
-            var ruser = userManager.GetUserId(HttpContext.User);
-            var filter = izazoviRepository.SviIzazovi().Where(e => e.IdIzazavanog == ruser);
-            PoslatiIzazoviViewModel model = new PoslatiIzazoviViewModel();
-            model.Izazovi = filter;
-
-            return View(model);
-        }
     }
 }
