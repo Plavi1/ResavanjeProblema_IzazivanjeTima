@@ -28,9 +28,10 @@
     <td>@Convert.ToString(i++)</td>
     <td>@lista.ImeIzazvanog</td>
     <td>
-        <div class="form-group">        
-                <input class="btn btn-danger" type="submit" asp-for="IdIzazova" value="@lista.IdIzazova" title="Obrisi"/>
-        </div>
+        <div class="form-group">
+             <input  hidden asp-for="IdIzazova" value="@lista.IdIzazova" id="@lista.IdIzazova" type="submit" />      
+             <label class="btn btn-danger" for="@lista.IdIzazova">Obrisi</label>
+        </div>    
     </td>
 
 </tr>
