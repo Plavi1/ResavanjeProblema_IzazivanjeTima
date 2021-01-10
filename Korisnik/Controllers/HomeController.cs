@@ -30,20 +30,30 @@ namespace ASPNETCOREMVC.Controllers
             this.izazoviRepository = izazoviRepository;
             _logger = logger;
         }
+
+
+
+        //Prva strana na koju udje korisnik kada se uloguje 
+
         [HttpGet]
         [Authorize]
         public ViewResult Index(IndexViewModel model)
         {
-            var user = userManager.GetUserId(HttpContext.User);
+            var idUlogovanog = userManager.GetUserId(HttpContext.User);
 
-            var izazovi = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == user);      //{--  Broj Izaova koje je POSLAO
-            model.BrojIzazova = izazovi.Count().ToString();                                       //{--     ulogovani korisnik
+            var ulogovanPoslao = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == idUlogovanog);           //{--  Broj Izaova koje je POSLAO
+            model.BrojIzazova = ulogovanPoslao.Count().ToString();                                                    //{--     ulogovani korisnik
 
-            var izazvan = izazoviRepository.SviIzazovi().Where(c => c.IdIzazavanog == user);      //{--  Broj Izazova koje je DOBIO
-            model.IzazvanBroj = izazvan.Count().ToString();                                       //{--   od strane drugih korisnika
+            var ulogovanDobio = izazoviRepository.SviIzazovi().Where(c => c.IdIzazavanog == idUlogovanog);            //{--  Broj Izazova koje je DOBIO
+            model.IzazvanBroj = ulogovanDobio.Count().ToString();                                                     //{--   od strane drugih korisnika
 
             return View(model);
         }
+
+
+
+        //Privremeni prikaz /home/svetabele ---[GET]---
+
         [HttpGet]
         public IActionResult SveTabele()                                                      //
         {                                                                                     // 
@@ -54,6 +64,10 @@ namespace ASPNETCOREMVC.Controllers
             };                                                                                //
             return View(sveTabele);                                                           //
         }
+
+        //Privremeni prikaz /home/svetabele ---[POST]---
+
+
         [HttpPost]
         public async Task<IActionResult> SveTabele(SveTabele sve)
         {
@@ -68,6 +82,10 @@ namespace ASPNETCOREMVC.Controllers
 
             return View(sveTabele);
         }
+
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

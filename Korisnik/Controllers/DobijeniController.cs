@@ -27,10 +27,11 @@ namespace Korisnik.Controllers
         [Authorize]
         public ViewResult Izazov()
         {
-            var ruser = userManager.GetUserId(HttpContext.User);
-            var filter = izazoviRepository.SviIzazovi().Where(e => e.IdIzazavanog == ruser);
+            var idUlogovanog = userManager.GetUserId(HttpContext.User);
+            var dobijeniIzazoviUlogovanog = izazoviRepository.SviIzazovi().Where(e => e.IdIzazavanog == idUlogovanog);
+
             PoslatiIzazoviViewModel model = new PoslatiIzazoviViewModel();
-            model.Izazovi = filter;
+            model.Izazovi = dobijeniIzazoviUlogovanog;
 
             return View(model);
         }

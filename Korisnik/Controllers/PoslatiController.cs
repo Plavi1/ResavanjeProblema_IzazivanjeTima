@@ -23,17 +23,23 @@ namespace Korisnik.Controllers
         }
 
 
+
+        //Prikaz poslatih izazova koje je korisnik poslao ---[GET]---
+
         [HttpGet]
         [Authorize]
         public ViewResult Izazov()
         {
-            var ruser = userManager.GetUserId(HttpContext.User);
-            var filter = izazoviRepository.SviIzazovi().Where(e => e.IdIzazivaoca == ruser);
+            var idUlogovanog = userManager.GetUserId(HttpContext.User);                                         
+            var poslatiIzazoviUlogovanog = izazoviRepository.SviIzazovi().Where(e => e.IdIzazivaoca == idUlogovanog);
+
             PoslatiIzazoviViewModel model = new PoslatiIzazoviViewModel();            
-            model.Izazovi = filter;
+            model.Izazovi = poslatiIzazoviUlogovanog;
             
             return View(model);
         }
+
+        //Prikaz poslatih izazova koje je korisnik poslao ---[POST]---
 
         [HttpPost]
         [Authorize]
@@ -41,9 +47,9 @@ namespace Korisnik.Controllers
         {           
             await izazoviRepository.Delete(model.IdIzazova);
 
-            var ruser = userManager.GetUserId(HttpContext.User);
-            var filter = izazoviRepository.SviIzazovi().Where(e => e.IdIzazivaoca == ruser);
-            model.Izazovi = filter;
+            var idUlogovanog = userManager.GetUserId(HttpContext.User);
+            var poslatiIzazoviUlogovanog = izazoviRepository.SviIzazovi().Where(e => e.IdIzazivaoca == idUlogovanog);
+            model.Izazovi = poslatiIzazoviUlogovanog;
 
             return View(model);
         }
