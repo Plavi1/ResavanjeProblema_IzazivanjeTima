@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Korisnik.Controllers
 {
+    [Authorize]
     public class PosaljiController : Controller
     {
         private readonly UserManager<ApplicationKorisnik> userManager;
@@ -29,19 +30,25 @@ namespace Korisnik.Controllers
 
 
 
-        //METODA KOJA SE PONAVLJA 
+        //METODA KOJA SE PONAVLJA ( cilj filtriranje prikaza )
 
-        private IEnumerable<ApplicationKorisnik> FilterPrikaza()                                 // Metoda koja se ponavlja, cilj joj je da filtrira prikaz
+        private IEnumerable<ApplicationKorisnik> FilterPrikaza()                                
         {
-            var ruser = userManager.GetUserId(HttpContext.User);                                 // Nalazi ID ulogovanog    
-            var lista = korisnikRepository.SviKorisnici().Where(e => e.Id != ruser);             // Svi korisnici izuzev ulogovanog korisnika
-            var izazovi = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == ruser);    // Svi izazovi gde se Id ulogovanog slaze sa Id-jem izazivaoca 
+            var idUlogovanog = userManager.GetUserId(HttpContext.User);                                          // Nalazi ID ulogovanog    
+            var lista = korisnikRepository.SviKorisnici().Where(a => a.Id != idUlogovanog);                      // Svi korisnici izuzev ulogovanog korisnika
+            var izazvaoUlogovani = izazoviRepository.SviIzazovi().Where(b => b.IdIzazivaoca == idUlogovanog);    // Svi izazovi gde se Id ulogovanog slaze sa Id-jem izazivaoca 
+            var izazvanUlogovani = izazoviRepository.SviIzazovi().Where(c => c.IdIzazavanog == idUlogovanog);    // Svi izazovi gde se Id ulogovanog slaze sa Id-jem izazvanog
 
-            foreach (var item in izazovi)                                                        // {--
-            {                                                                                    // {--   Metoda koja filterise sve ID-jeve izazvanih
-                lista = lista.Where(e => e.Id != item.IdIzazavanog);                             // {--    koje je ulogovani izazvao
+            foreach (var item in izazvaoUlogovani)                                               // {--
+            {                                                                                    // {--      Filtrira sve ID-jeve izazvanih
+                lista = lista.Where(e => e.Id != item.IdIzazavanog);                             // {--        koje je ulogovani izazvao
             }                                                                                    // {--
-            
+
+            foreach (var item in izazvanUlogovani)                                               // {--
+            {                                                                                    // {--      Filtrira sve ID-jeve izazivalaca 
+                lista = lista.Where(e => e.Id != item.IdIzazivaoca);                             // {--       koji su poslali izazov ulogovanom
+            }                                                                                    // {--
+
             return lista;
         }
 
@@ -49,11 +56,10 @@ namespace Korisnik.Controllers
 
         //LISTA IZAZOVA ---[GET]---
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet]    
         public ViewResult Izazov()
         {
-            PosaljiIzazovViewModel mymodel = new PosaljiIzazovViewModel();
+            PosaljiIzazov_ViewModel mymodel = new PosaljiIzazov_ViewModel();
 
             IEnumerable<ApplicationKorisnik> lista = FilterPrikaza();                            // Metoda gore navedena  
             
@@ -67,8 +73,7 @@ namespace Korisnik.Controllers
         //LISTA IZAZOVA ---[POST]---
 
         [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Izazov(PosaljiIzazovViewModel model)                    // Dolaze nam informacije od nase forme na View stranci
+        public async Task<IActionResult> Izazov(PosaljiIzazov_ViewModel model)                    // Dolaze nam informacije od nase forme na View stranci
         {                 
             if (model.IdIzazvanog != "false")                                                    // Nama je samo bitan IdIzazvanog zato proveravamo da li je vrednost "false" da bi nastavili
             {
@@ -90,12 +95,12 @@ namespace Korisnik.Controllers
             }
 
 
-            //OVO ZAMENITI SA "Client validation"
+            //OVO ZAMENITI SA "Client validation"  [Razmisljaj da li je ovaj pristup dobar]
 
             IEnumerable<ApplicationKorisnik> lista = FilterPrikaza();                            // Metoda gore navedena
             model.ApplicationKorisnik = lista;                                                   //{ --  Dodeljujemo ViewModelu 
-            model.ErrorPoruka = "Nisi selektovao ni jednog korisnika!";                          //{ --  Ubaceno zato sto ne funkcionise asp-validation-for, [MOGUCE DA NEGDE GRESIM, PRONACI DRUGO RESENJE]
-
+            model.ErrorPoruka = "Nisi selektovao ni jednog korisnika!";                          //{ --  Kada se prosire opcije, to jest novi input mozemo da stavljamo Error poruku za svaki slucaj posebno
+                                                                                                                                                             
 
             return View(model);
         }

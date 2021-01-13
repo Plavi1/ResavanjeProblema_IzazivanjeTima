@@ -1,6 +1,7 @@
 ﻿using Korisnik.Areas.Identity.Data;
 using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
+using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Korisnik.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,6 +16,7 @@ namespace ASPNETCOREMVC.Controllers
     public class HomeController : Controller
     {
         private readonly UserManager<ApplicationKorisnik> userManager;
+        private readonly IPrihvaceni_IzazoviRepository prihvaceniIzazovi;
         private readonly IKorisnikRepository korisnikRepository;
         private readonly IIzazoviRepository izazoviRepository;
         private readonly ILogger<HomeController> _logger;
@@ -23,9 +25,11 @@ namespace ASPNETCOREMVC.Controllers
         public HomeController(ILogger<HomeController> logger, 
                               IKorisnikRepository korisnikRepository, 
                               IIzazoviRepository izazoviRepository,
-                              UserManager<ApplicationKorisnik> userManager)
+                              UserManager<ApplicationKorisnik> userManager,
+                              IPrihvaceni_IzazoviRepository prihvaceniIzazovi)
         {
             this.userManager = userManager;
+            this.prihvaceniIzazovi = prihvaceniIzazovi;
             this.korisnikRepository = korisnikRepository;
             this.izazoviRepository = izazoviRepository;
             _logger = logger;
@@ -37,7 +41,7 @@ namespace ASPNETCOREMVC.Controllers
 
         [HttpGet]
         [Authorize]
-        public ViewResult Index(IndexViewModel model)
+        public ViewResult Index(Index_ViewModel model)
         {
             var idUlogovanog = userManager.GetUserId(HttpContext.User);
 
@@ -46,6 +50,18 @@ namespace ASPNETCOREMVC.Controllers
 
             var ulogovanDobio = izazoviRepository.SviIzazovi().Where(c => c.IdIzazavanog == idUlogovanog);            //{--  Broj Izazova koje je DOBIO
             model.IzazvanBroj = ulogovanDobio.Count().ToString();                                                     //{--   od strane drugih korisnika
+
+            var listaSvihPrihvacenihIzazova = prihvaceniIzazovi.SviIzazovi();
+            int brojPrihvacenih = 0;
+            foreach (var item in listaSvihPrihvacenihIzazova)
+            {      
+                if (item.IdIzazavanog == idUlogovanog || item.IdIzazivaoca == idUlogovanog)
+                {
+                    brojPrihvacenih++;
+                }
+            }
+            model.BrojPrihvacenih = brojPrihvacenih.ToString();
+          
 
             return View(model);
         }
@@ -57,33 +73,38 @@ namespace ASPNETCOREMVC.Controllers
         [HttpGet]
         public IActionResult SveTabele()                                                      //
         {                                                                                     // 
-            SveTabele sveTabele = new SveTabele                                               //     PROST PRIKAZ SVIH TABELA IZ Micrsoft SQL Servera
+            SveTabele_ViewModel sveTabele = new SveTabele_ViewModel                           //     PROST PRIKAZ SVIH TABELA IZ Micrsoft SQL Servera
             {                                                                                 //              [PRIVREMENEO  /home/svetable]
                 ApplicationKorisnik = korisnikRepository.SviKorisnici(),                      //
-                Izazovi = izazoviRepository.SviIzazovi()                                      // 
+                Izazovi = izazoviRepository.SviIzazovi(),                                     //
+                PrihvaceniIzazovi = prihvaceniIzazovi.SviIzazovi()                            //
             };                                                                                //
             return View(sveTabele);                                                           //
         }
 
-        //Privremeni prikaz /home/svetabele ---[POST]---
 
 
-        [HttpPost]
-        public async Task<IActionResult> SveTabele(SveTabele sve)
+        //Privremeni prikaz /home/svetabele ----OBRISI IZAZAOV----
+
+        public async Task<IActionResult> ObrisiIzazov(int id)
         {
             
-            await izazoviRepository.Delete(sve.id);
+            await izazoviRepository.Delete(id);
 
-            SveTabele sveTabele = new SveTabele                                              
-            {                                                                                
-                ApplicationKorisnik = korisnikRepository.SviKorisnici(),                      
-                Izazovi = izazoviRepository.SviIzazovi()                                      
-            };
 
-            return View(sveTabele);
+            return RedirectToAction("SveTabele");
         }
 
+        //Privremeni prikaz /home/svetabele ----OBRISI PRIHVACEN IZAZOV----
 
+        public async Task<IActionResult> ObrisiPrihvacen(int id)
+        {
+
+            await prihvaceniIzazovi.Delete(id);
+
+
+            return RedirectToAction("SveTabele");
+        }
 
 
 

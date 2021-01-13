@@ -22,9 +22,9 @@ namespace Korisnik.Areas.Identity
 
                 services.AddDefaultIdentity<ApplicationKorisnik>(options => { 
                     options.SignIn.RequireConfirmedAccount = false;      // Ne mora da se potvrdi account, to jest ne mora da ulazi na email da bi potvrdio
-                    options.Password.RequireLowercase = false;           //Ubacili smo da ne treba mala i velika slova i !@#
-                    options.Password.RequireUppercase = false;           //
-                    options.Password.RequireNonAlphanumeric = false;     // 
+                    options.Password.RequireLowercase = false;           // Ubacili smo da ne treba mala 
+                    options.Password.RequireUppercase = false;           //    ,velika slova
+                    options.Password.RequireNonAlphanumeric = false;     //      i !@#
 
                 })
                 

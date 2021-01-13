@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Korisnik.Controllers
 {
+    [Authorize]
     public class PoslatiController : Controller
     {
         private readonly IIzazoviRepository izazoviRepository;
@@ -27,13 +28,12 @@ namespace Korisnik.Controllers
         //Prikaz poslatih izazova koje je korisnik poslao ---[GET]---
 
         [HttpGet]
-        [Authorize]
         public ViewResult Izazov()
         {
             var idUlogovanog = userManager.GetUserId(HttpContext.User);                                         
             var poslatiIzazoviUlogovanog = izazoviRepository.SviIzazovi().Where(e => e.IdIzazivaoca == idUlogovanog);
 
-            PoslatiIzazoviViewModel model = new PoslatiIzazoviViewModel();            
+            PoslatiIzazovi_ViewModel model = new PoslatiIzazovi_ViewModel();            
             model.Izazovi = poslatiIzazoviUlogovanog;
             
             return View(model);
@@ -42,16 +42,11 @@ namespace Korisnik.Controllers
         //Prikaz poslatih izazova koje je korisnik poslao ---[POST]---
 
         [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Izazov(PoslatiIzazoviViewModel model)           
+        public async Task<IActionResult> Izazov(PoslatiIzazovi_ViewModel model)           
         {           
             await izazoviRepository.Delete(model.IdIzazova);
 
-            var idUlogovanog = userManager.GetUserId(HttpContext.User);
-            var poslatiIzazoviUlogovanog = izazoviRepository.SviIzazovi().Where(e => e.IdIzazivaoca == idUlogovanog);
-            model.Izazovi = poslatiIzazoviUlogovanog;
-
-            return View(model);
+            return RedirectToAction("Izazov");
         }
 
     }

@@ -1,0 +1,43 @@
+﻿@using Korisnik.ViewModel
+@model PrihvaceniIzazovi_ViewModel
+
+@{ ViewData["Title"] = "Prihvaceni Izazovi";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{ int i = 1; }
+<div>
+    <h1>Lista Prihvacenih Izazova</h1>
+
+</div>
+@if (Model.ulogovaniPrihvatio.Any())
+{
+    <form method="post">
+        <table class="table table-dark w-25">
+
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Izazvao</th>
+                    <th scope="col">Izazvan</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var lista in Model.ulogovaniPrihvatio)
+                {
+                    <tr>
+                        <td>@Convert.ToString(i++)</td>
+                        <td>@lista.ImeIzazivaoca</td>
+                        <td>@lista.ImeIzazvanog </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a type="button" asp-controller="home" asp-action="Index" class="btn btn-secondary">Pocetna</a>
+    </form>
+}
+else
+{
+    <h2>NEMA PRIHVACENIH IZAZOVA</h2>
+    <a type="button" asp-controller="home" asp-action="Index" class="btn btn-secondary">Pocetna</a>
+}

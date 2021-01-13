@@ -2,7 +2,7 @@
 @using Korisnik.Areas.Identity.Data
 @using Korisnik.ViewModel
 
-@model IndexViewModel
+@model Index_ViewModel
 
 @inject SignInManager<ApplicationKorisnik> SignInManager
 @inject UserManager<ApplicationKorisnik> UserManager
@@ -21,16 +21,24 @@
         <br />
         <br />
         <div class="btn-group-vertical h-100">
-            <a type="button" class="btn btn-dark" asp-area="" asp-controller="Poslati" asp-action="Izazov">
-                Poslata <span class="badge badge-light col-md-3">@Model.BrojIzazova</span>
-            </a>
+            @if (Model.BrojIzazova != "0")
+            {
+                <a type="button" class="btn btn-dark" asp-area="" asp-controller="Poslati" asp-action="Izazov">
+                    Poslata <span class="badge badge-light col-md-3">@Model.BrojIzazova</span>
+                </a>
+            }
             <a type="button" class="btn btn-info btn-lg" asp-area="" asp-controller="Posalji" asp-action="Izazov">Posalji NOV IZAZOV</a>
             @if (Model.IzazvanBroj != "0")
             {
-             <a type="button" class="btn btn-warning" asp-area="" asp-controller="Dobijeni" asp-action="Izazov"> DOBILI STE @Model.IzazvanBroj  </a>    
+                <a type="button" class="btn btn-warning" asp-area="" asp-controller="Dobijeni" asp-action="Izazov"> DOBILI STE @Model.IzazvanBroj  </a>
             }
         </div>
-    
+        <br />
+        <br />
+        <a type="button" class="btn btn-success"  asp-controller="Prihvaceni" asp-action="Izazov">
+            Poslata <span class="badge badge-light col-md-3" style="width:auto">@Model.BrojPrihvacenih</span>
+        </a>
+
     }
 </div>
 

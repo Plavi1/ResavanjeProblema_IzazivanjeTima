@@ -90,6 +90,32 @@ namespace Korisnik.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Korisnik.Areas.Identity.Data.Prihvaceni_Izazovi", b =>
+                {
+                    b.Property<int>("IdIzazova")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("IdIzazavanog")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdIzazivaoca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImeIzazivaoca")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImeIzazvanog")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdIzazova");
+
+                    b.ToTable("Prihvaceni_Izazovi");
+                });
+
             modelBuilder.Entity("Korisnik.Models.Izazovi", b =>
                 {
                     b.Property<int>("IdIzazova")

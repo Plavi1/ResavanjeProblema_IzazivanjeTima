@@ -2,6 +2,7 @@ using Korisnik.Areas.Identity.Data;
 using Korisnik.Data;
 using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
+using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,9 +30,11 @@ namespace Korisnik
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddScoped<IKorisnikRepository, SQLKorisnikRepository>();                    //Dodali Dependency Injection
-            services.AddScoped<IIzazoviRepository, SQLIzazoviRepository>();                      //Dodali Dependency Injection
-            services.AddRazorPages();                                                            //Dodali
+            services.AddScoped<IKorisnikRepository, SQLKorisnikRepository>();                           //Dodali Dependency Injection
+            services.AddScoped<IIzazoviRepository, SQLIzazoviRepository>();                             //Dodali Dependency Injection
+            services.AddScoped<IPrihvaceni_IzazoviRepository, SQLPrihvaceni_IzazoviRepository>();       //Dodali Dependency Injection
+
+            services.AddRazorPages();                                                                   //Dodali
             services.AddControllersWithViews();
         }
          

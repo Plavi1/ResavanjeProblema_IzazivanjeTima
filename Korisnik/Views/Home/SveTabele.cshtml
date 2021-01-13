@@ -1,5 +1,5 @@
 ﻿@using Korisnik.ViewModel;
-@model SveTabele
+@model SveTabele_ViewModel
 @{ ViewData["Title"] = "SveTabele";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 @{ int i = 1; }
@@ -34,45 +34,78 @@ else
 {
     <h2>NEMA REGISTROVANIH KORISNIKA</h2>
 }
- 
+
 
 <h1>Lista  Izazova</h1>
 
 @if (Model.Izazovi.Any())
 {
-<form method="post">
-    <table class="table table-dark">
+    <form method="post">
+        <table class="table table-dark">
 
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Izazivaoc</th>
-                <th scope="col">Izazvani</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var lista in Model.Izazovi)
-            {
+            <thead>
                 <tr>
-                    <td>@lista.IdIzazova</td>
-                    <td>@lista.ImeIzazivaoca</td>
-                    <td>@lista.ImeIzazvanog</td>
-                    <td>
-                        <div class="form-group">
-                            <input hidden asp-for="id" value="@lista.IdIzazova" id="@lista.IdIzazova" type="submit" />
-                            <label class="btn btn-danger" for="@lista.IdIzazova">Obrisi</label>
-                        </div>
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">Izazivaoc</th>
+                    <th scope="col">Izazvani</th>
+                    <th scope="col"></th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var lista in Model.Izazovi)
+                {
+                    <tr>
+                        <td>@lista.IdIzazova</td>
+                        <td>@lista.ImeIzazivaoca</td>
+                        <td>@lista.ImeIzazvanog</td>
+                        <td>
+                            <a class="btn btn-danger" asp-controller="Home" asp-action="ObrisiIzazov" asp-route-id="@lista.IdIzazova"> Obrisi</a>
+                        </td>
+                    </tr>
+                }
 
-        </tbody>
-    </table>
- </form>
-    }
-    else
-    {
+            </tbody>
+        </table>
+    </form>
+}
+else
+{
     <h2>TRENUTNO NEMA IZAZOVA</h2>
-    }
+}
+<h1>Lista  Prihvacenih izazova</h1>
+
+@if (Model.PrihvaceniIzazovi.Any())
+{
+    
+        <table class="table table-dark">
+
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Izazivaoc</th>
+                    <th scope="col">Izazvani</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var lista in Model.PrihvaceniIzazovi)
+                {
+                    <tr>
+                        <td>@lista.IdIzazova</td>
+                        <td>@lista.ImeIzazivaoca</td>
+                        <td>@lista.ImeIzazvanog</td>
+                        <td>
+                            <a class="btn btn-danger" asp-controller="Home" asp-action="ObrisiPrihvacen" asp-route-id="@lista.IdIzazova"> Obrisi</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+   
+}
+else
+{
+    <h2>TRENUTNO NEMA PRIHVACENIH IZAZOVA</h2>
+}
 

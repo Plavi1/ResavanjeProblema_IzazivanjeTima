@@ -2916,3 +2916,5 @@ C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_Izazivanj
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Poslati\Izazov.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Dobijeni\Izazov.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Posalji\Izazov.cshtml.g.cs
+C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\bin\Debug\net5.0\libman.json
+C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Prihvaceni\Izazov.cshtml.g.cs

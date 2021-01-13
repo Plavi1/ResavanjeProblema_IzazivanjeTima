@@ -19,6 +19,7 @@ namespace Korisnik.Data
 
         public IEnumerable<ApplicationKorisnik> ApplicationKorisnik { get; internal set; }
         public DbSet<Izazovi> Izazovi { get; set; }
+        public DbSet<Prihvaceni_Izazovi> Prihvaceni_Izazovi { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
