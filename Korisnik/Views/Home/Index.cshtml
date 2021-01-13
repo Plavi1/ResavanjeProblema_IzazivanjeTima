@@ -35,10 +35,12 @@
         </div>
         <br />
         <br />
-        <a type="button" class="btn btn-success"  asp-controller="Prihvaceni" asp-action="Izazov">
-            Poslata <span class="badge badge-light col-md-3" style="width:auto">@Model.BrojPrihvacenih</span>
+        @if (Model.BrojPrihvacenih != "0")
+        {
+         <a type="button" class="btn btn-success"  asp-controller="Prihvaceni" asp-action="Izazov">
+            Prihvacena <span class="badge badge-light col-md-3" style="width:auto">@Model.BrojPrihvacenih</span>
         </a>
-
-    }
+         }
+        }
 </div>
 
