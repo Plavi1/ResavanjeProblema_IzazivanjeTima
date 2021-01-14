@@ -11,9 +11,12 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Korisnik</a>                              
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Korisnik</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <partial name="_LoginPartial.cshtml"/>
+                    <partial name="_LoginPartial.cshtml" />
+                </div>
+                <div class="float-right">
+                    <a class="btn btn-primary " asp-area="" asp-controller="Home" asp-action="SveTabele">Sve Tabele</a>
                 </div>
             </div>
         </nav>

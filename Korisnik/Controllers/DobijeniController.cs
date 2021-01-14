@@ -1,13 +1,9 @@
 ﻿using Korisnik.Areas.Identity.Data;
-using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Korisnik.ViewModel;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 

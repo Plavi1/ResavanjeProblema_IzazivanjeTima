@@ -51,17 +51,17 @@ namespace ASPNETCOREMVC.Controllers
             var ulogovanDobio = izazoviRepository.SviIzazovi().Where(c => c.IdIzazavanog == idUlogovanog);            //{--  Broj Izazova koje je DOBIO
             model.IzazvanBroj = ulogovanDobio.Count().ToString();                                                     //{--   od strane drugih korisnika
 
-            var listaSvihPrihvacenihIzazova = prihvaceniIzazovi.SviIzazovi();
-            int brojPrihvacenih = 0;
-            foreach (var item in listaSvihPrihvacenihIzazova)
-            {      
-                if (item.IdIzazavanog == idUlogovanog || item.IdIzazivaoca == idUlogovanog)
-                {
-                    brojPrihvacenih++;
-                }
-            }
-            model.BrojPrihvacenih = brojPrihvacenih.ToString();
-          
+            var listaSvihPrihvacenihIzazova = prihvaceniIzazovi.SviIzazovi();                                         //{--
+            int brojPrihvacenih = 0;                                                                                  //{--
+            foreach (var item in listaSvihPrihvacenihIzazova)                                                         //{--
+            {                                                                                                         //{--  Broj Prihvacenih izazova koje
+                if (item.IdIzazavanog == idUlogovanog || item.IdIzazivaoca == idUlogovanog)                           //{--   je prihvatio korinsink
+                {                                                                                                     //{--
+                    brojPrihvacenih++;                                                                                //{--
+                }                                                                                                     //{--
+            }                                                                                                         //{--
+            model.BrojPrihvacenih = brojPrihvacenih.ToString();                                                       //{--
+                                                               
 
             return View(model);
         }

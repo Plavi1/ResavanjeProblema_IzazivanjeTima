@@ -36,9 +36,8 @@ namespace Korisnik.Controllers
             { 
                 if (item.IdIzazavanog != idUlogovanog && item.IdIzazivaoca != idUlogovanog)
                 {
-                    listaSvihPrihvacenihIzazov = listaSvihPrihvacenihIzazov.Where(e => e != item).ToList();                //Imao sam velikih problema sa ovim kodom, nije htelo da uspe bez ovog ToList() [ISTRAZI ZASTO]
+                    listaSvihPrihvacenihIzazov = listaSvihPrihvacenihIzazov.Where(e => e != item).ToList();     //Imao sam velikih problema sa ovim kodom, nije htelo da uspe bez .ToList() [ISTRAZI ZASTO]
                 }
-  
             }
 
             PrihvaceniIzazovi_ViewModel model = new PrihvaceniIzazovi_ViewModel();

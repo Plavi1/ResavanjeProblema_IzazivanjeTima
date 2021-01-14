@@ -4,41 +4,43 @@
 @{ ViewData["Title"] = "Izazovi";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 @{ int i = 1; }
+
 <div>
     <h1>Izazvani ste od strane:</h1>
 </div>
 @if (Model.Izazovi.Any())
-{
-<table class="table table-dark w-75 ">
+ {
+    <table class="table table-dark w-75 ">
+        <thead>
+            <tr>
+                <th scope="col">Izazvao</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
 
-    <thead>
-        <tr>
-            <th scope="col">Izazvao</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @foreach (var lista in Model.Izazovi)
+       @foreach (var lista in Model.Izazovi)    
         {
-<tr>
-    <td>@Convert.ToString(i++)</td>
-    <td>@lista.ImeIzazivaoca</td>
-    <td>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-danger" asp-controller="Dobijeni" asp-action="Obrisi" asp-route-id="@lista.IdIzazova"> Obrisi</a>
-            <a class="btn btn-success" asp-controller="Dobijeni" asp-action="Prihvatam" asp-route-id="@lista.IdIzazova"> Prihvatam</a>
-            <button class="btn btn-warning">Promeni vreme</button>
-        </div>
-    </td>
+        <tr>
+        <td>@Convert.ToString(i++)</td>
+        <td>@lista.ImeIzazivaoca</td>
+        <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class="btn btn-danger" asp-controller="Dobijeni" asp-action="Obrisi" asp-route-id="@lista.IdIzazova"> Obrisi</a>
+                    <a class="btn btn-success" asp-controller="Dobijeni" asp-action="Prihvatam" asp-route-id="@lista.IdIzazova"> Prihvatam</a>
+                    <button class="btn btn-warning">Promeni vreme</button>
+                </div>
+        </td>
 
-</tr>}
-    </tbody>
-</table>
-
-                <a type="button" asp-controller="home" asp-action="Index" class="btn btn-secondary">Pocetna</a> }
-            else
-            {
-<h2>Niste izazvani</h2>
-                <a type="button" asp-controller="home" asp-action="Index" class="btn btn-secondary">Pocetna</a>}
+        </tr>
+        }
+        </tbody>
+    </table>
+    <a type="button" asp-controller="home" asp-action="Index" class="btn btn-secondary">Pocetna</a>
+ }
+ else
+ {
+ <h2>Niste izazvani</h2>
+ <a type="button" asp-controller="home" asp-action="Index" class="btn btn-secondary">Pocetna</a>
+ }
