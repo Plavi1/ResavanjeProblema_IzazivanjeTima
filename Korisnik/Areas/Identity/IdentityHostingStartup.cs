@@ -20,16 +20,18 @@ namespace Korisnik.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("KorisnikDbContextConnection")));
 
-                services.AddDefaultIdentity<ApplicationKorisnik>(options => { 
+                services.AddDefaultIdentity<ApplicationKorisnik>(options => {
                     options.SignIn.RequireConfirmedAccount = false;      // Ne mora da se potvrdi account, to jest ne mora da ulazi na email da bi potvrdio
                     options.Password.RequireLowercase = false;           // Ubacili smo da ne treba mala 
                     options.Password.RequireUppercase = false;           //    ,velika slova
                     options.Password.RequireNonAlphanumeric = false;     //      i !@#
 
                 })
-                
+                    .AddRoles<IdentityRole>()                           // Dodato da bi omogucili manipulaciju sa role tabelama
                     .AddEntityFrameworkStores<KorisnikDbContext>();
                     
+
+
             });
         }
     }

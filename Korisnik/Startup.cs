@@ -1,19 +1,11 @@
-using Korisnik.Areas.Identity.Data;
-using Korisnik.Data;
 using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Korisnik
 {
@@ -33,7 +25,8 @@ namespace Korisnik
             services.AddScoped<IKorisnikRepository, SQLKorisnikRepository>();                           //Dodali Dependency Injection
             services.AddScoped<IIzazoviRepository, SQLIzazoviRepository>();                             //Dodali Dependency Injection
             services.AddScoped<IPrihvaceni_IzazoviRepository, SQLPrihvaceni_IzazoviRepository>();       //Dodali Dependency Injection
-
+            
+         
             services.AddRazorPages();                                                                   //Dodali
             services.AddControllersWithViews();
         }
@@ -46,7 +39,7 @@ namespace Korisnik
                 app.UseDeveloperExceptionPage();
             }
             else
-            {
+            {         
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
