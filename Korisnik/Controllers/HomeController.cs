@@ -20,16 +20,18 @@ namespace ASPNETCOREMVC.Controllers
         private readonly IKorisnikRepository korisnikRepository;
         private readonly IIzazoviRepository izazoviRepository;
         private readonly ILogger<HomeController> _logger;
-       
+        private readonly SignInManager<ApplicationKorisnik> signInManager;
 
         public HomeController(ILogger<HomeController> logger, 
                               IKorisnikRepository korisnikRepository, 
                               IIzazoviRepository izazoviRepository,
                               UserManager<ApplicationKorisnik> userManager,
-                              IPrihvaceni_IzazoviRepository prihvaceniIzazovi)
+                              IPrihvaceni_IzazoviRepository prihvaceniIzazovi,
+                              SignInManager<ApplicationKorisnik> signInManager)
         {
             this.userManager = userManager;
             this.prihvaceniIzazovi = prihvaceniIzazovi;
+            this.signInManager = signInManager;
             this.korisnikRepository = korisnikRepository;
             this.izazoviRepository = izazoviRepository;
             _logger = logger;
@@ -44,30 +46,38 @@ namespace ASPNETCOREMVC.Controllers
         //Prva strana na koju udje korisnik kada se uloguje 
 
         [HttpGet]
-        [Authorize]
-        public ViewResult Index(Index_ViewModel model)
+        public IActionResult Index(Index_ViewModel model)
         {
-            var idUlogovanog = userManager.GetUserId(HttpContext.User);
+            var ulogovan = signInManager.IsSignedIn(User);
 
-            var ulogovanPoslao = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == idUlogovanog);           //{--  Broj Izaova koje je POSLAO
-            model.BrojIzazova = ulogovanPoslao.Count().ToString();                                                    //{--     ulogovani korisnik
+            if (ulogovan == false)
+            {
+                return RedirectToAction("Pocetna");
+            }
+            else
+            {
+                var idUlogovanog = userManager.GetUserId(HttpContext.User);
 
-            var ulogovanDobio = izazoviRepository.SviIzazovi().Where(c => c.IdIzazavanog == idUlogovanog);            //{--  Broj Izazova koje je DOBIO
-            model.IzazvanBroj = ulogovanDobio.Count().ToString();                                                     //{--   od strane drugih korisnika
+                var ulogovanPoslao = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == idUlogovanog);           //{--  Broj Izaova koje je POSLAO
+                model.BrojIzazova = ulogovanPoslao.Count().ToString();                                                    //{--     ulogovani korisnik
 
-            var listaSvihPrihvacenihIzazova = prihvaceniIzazovi.SviIzazovi();                                         //{--
-            int brojPrihvacenih = 0;                                                                                  //{--
-            foreach (var item in listaSvihPrihvacenihIzazova)                                                         //{--
-            {                                                                                                         //{--  Broj Prihvacenih izazova koje
-                if (item.IdIzazavanog == idUlogovanog || item.IdIzazivaoca == idUlogovanog)                           //{--   je prihvatio korinsink
-                {                                                                                                     //{--
-                    brojPrihvacenih++;                                                                                //{--
-                }                                                                                                     //{--
-            }                                                                                                         //{--
-            model.BrojPrihvacenih = brojPrihvacenih.ToString();                                                       //{--
-                                                               
+                var ulogovanDobio = izazoviRepository.SviIzazovi().Where(c => c.IdIzazavanog == idUlogovanog);            //{--  Broj Izazova koje je DOBIO
+                model.IzazvanBroj = ulogovanDobio.Count().ToString();                                                     //{--   od strane drugih korisnika
 
-            return View(model);
+                var listaSvihPrihvacenihIzazova = prihvaceniIzazovi.SviIzazovi();                                         //{--
+                int brojPrihvacenih = 0;                                                                                  //{--
+                foreach (var item in listaSvihPrihvacenihIzazova)                                                         //{--
+                {                                                                                                         //{--  Broj Prihvacenih izazova koje
+                    if (item.IdIzazavanog == idUlogovanog || item.IdIzazivaoca == idUlogovanog)                           //{--   je prihvatio korinsink
+                    {                                                                                                     //{--
+                        brojPrihvacenih++;                                                                                //{--
+                    }                                                                                                     //{--
+                }                                                                                                         //{--
+                model.BrojPrihvacenih = brojPrihvacenih.ToString();                                                       //{--
+
+
+                return View(model);
+            }
         }
 
 

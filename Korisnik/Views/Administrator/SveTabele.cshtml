@@ -23,10 +23,10 @@
             @foreach (var list in Model.ApplicationKorisnik)
             {
                 <tr>
-                    <td>@Convert.ToString(i++)</td>
-                    <td>@list.Ime</td>
-                    <td>@list.Prezime</td>
-                    <td>
+                    <td class="w-15">@Convert.ToString(i++)</td>
+                    <td class="w-15">@list.Ime</td>
+                    <td class="w-15">@list.Prezime</td>
+                    <td class="w-50">
                         <form method="post" asp-action="DeleteUser" asp-route-id="@list.Id">
 
                             <a asp-action="EditUser" asp-controller="Administrator"
@@ -53,7 +53,12 @@
 }
 else
 {
-    <h2>NEMA REGISTROVANIH KORISNIKA</h2>
+    <div class="card text-white bg-secondary mb-3">
+        <div class="card-body">
+            <h4 class="card-title">TRENUTNO NEMA <b style="color:red"> REGISTROVANIH KORISNIKA </b>  </h4>
+        </div>
+    </div>
+    
 }
 
 <h1>Lista  Izazova</h1>
@@ -90,7 +95,11 @@ else
 }
 else
 {
-    <h2>TRENUTNO NEMA IZAZOVA</h2>
+    <div class="card text-white bg-secondary mb-3">
+        <div class="card-body">
+            <h4 class="card-title">TRENUTNO NEMA <b style="color:red"> IZAZOVA U PROCESU</b>  </h4>
+        </div>
+    </div>
 }
 
 <h1>Lista  Prihvacenih izazova</h1>
@@ -127,7 +136,12 @@ else
 }
 else
 {
-    <h2>TRENUTNO NEMA PRIHVACENIH IZAZOVA</h2>
+    <div class="card text-white bg-secondary mb-3">
+        <div class="card-body">
+            <h4 class="card-title">TRENUTNO NEMA <b style="color:red"> PRIHVACENIH IZAZOVA </b>  </h4>
+        </div>
+    </div>
+
 }
 
 @section Scripts {
