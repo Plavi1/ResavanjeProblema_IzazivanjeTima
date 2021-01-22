@@ -45,6 +45,7 @@ namespace Korisnik.Controllers
             var prihvatioUlogovani = prihvaceniIzazovi.SviIzazovi().Where(d => d.IdIzazavanog == idUlogovanog);    // Svi prihvaceni izazovi gde se Id ulogovanog slaze sa Id-jem izazvanog
             var prihvacenUlogovani = prihvaceniIzazovi.SviIzazovi().Where(e => e.IdIzazivaoca == idUlogovanog);    // Svi prihvaceni izazovi gde se Id ulogovanog slaze sa Id-jem izazivaoca
 
+            
             foreach (var item in izazvaoUlogovani)                                               // {--
             {                                                                                    // {--      Filtrira sve ID-jeve izazvanih
                 lista = lista.Where(e => e.Id != item.IdIzazavanog);                             // {--        koje je ulogovani izazvao

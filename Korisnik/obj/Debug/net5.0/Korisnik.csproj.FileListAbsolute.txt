@@ -2912,7 +2912,6 @@ C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_Izazivanj
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\ref\Korisnik.dll
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Korisnik.pdb
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Korisnik.genruntimeconfig.cache
-C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Home\SveTabele.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Poslati\Izazov.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Dobijeni\Izazov.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Posalji\Izazov.cshtml.g.cs
@@ -2923,3 +2922,5 @@ C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_Izazivanj
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Administrator\EditRole.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Shared\NotFound.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Administrator\EditUsersInRole.cshtml.g.cs
+C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Administrator\EditUser.cshtml.g.cs
+C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Administrator\SveTabele.cshtml.g.cs

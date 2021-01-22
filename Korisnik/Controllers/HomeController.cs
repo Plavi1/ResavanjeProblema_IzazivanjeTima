@@ -36,6 +36,10 @@ namespace ASPNETCOREMVC.Controllers
         }
 
 
+        public IActionResult Pocetna()
+        {
+            return View();
+        }
 
         //Prva strana na koju udje korisnik kada se uloguje 
 
@@ -65,47 +69,6 @@ namespace ASPNETCOREMVC.Controllers
 
             return View(model);
         }
-
-
-
-        //Privremeni prikaz /home/svetabele ---[GET]---
-
-        [HttpGet]
-        public IActionResult SveTabele()                                                      //
-        {                                                                                     // 
-            SveTabele_ViewModel sveTabele = new SveTabele_ViewModel                           //     PROST PRIKAZ SVIH TABELA IZ Micrsoft SQL Servera
-            {                                                                                 //              [PRIVREMENEO  /home/svetable]
-                ApplicationKorisnik = korisnikRepository.SviKorisnici(),                      //
-                Izazovi = izazoviRepository.SviIzazovi(),                                     //
-                PrihvaceniIzazovi = prihvaceniIzazovi.SviIzazovi()                            //
-            };                                                                                //
-            return View(sveTabele);                                                           //
-        }
-
-
-
-        //Privremeni prikaz /home/svetabele ----OBRISI IZAZAOV----
-
-        public async Task<IActionResult> ObrisiIzazov(int id)
-        {
-            
-            await izazoviRepository.Delete(id);
-
-
-            return RedirectToAction("SveTabele");
-        }
-
-        //Privremeni prikaz /home/svetabele ----OBRISI PRIHVACEN IZAZOV----
-
-        public async Task<IActionResult> ObrisiPrihvacen(int id)
-        {
-
-            await prihvaceniIzazovi.Delete(id);
-
-
-            return RedirectToAction("SveTabele");
-        }
-
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
