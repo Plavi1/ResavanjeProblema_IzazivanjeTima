@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Korisnik.Migrations
 {
     [DbContext(typeof(KorisnikDbContext))]
-    [Migration("20201229120829_DodavanjeIzazova")]
-    partial class DodavanjeIzazova
+    [Migration("20210127135434_UbacivanjeVremenaImesta")]
+    partial class UbacivanjeVremenaImesta
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,6 +92,44 @@ namespace Korisnik.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Korisnik.Areas.Identity.Data.Prihvaceni_Izazovi", b =>
+                {
+                    b.Property<int>("IdIzazova")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("IdIzazavanog")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdIzazivaoca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImeIzazivaoca")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImeIzazvanog")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mesto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("VremePoslatogIzazova")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ZakazanDatum")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZakazanoVreme")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdIzazova");
+
+                    b.ToTable("Prihvaceni_Izazovi");
+                });
+
             modelBuilder.Entity("Korisnik.Models.Izazovi", b =>
                 {
                     b.Property<int>("IdIzazova")
@@ -100,14 +138,34 @@ namespace Korisnik.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("IdIzazavanog")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdIzazivaoca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImeIzazivaoca")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImeIzazvanog")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mesto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("VremePoslatogIzazova")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ZakazanDatum")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZakazanoVreme")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdIzazova");
 
-                    b.ToTable("tblIzazovi");
+                    b.ToTable("Izazovi");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

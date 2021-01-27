@@ -30,5 +30,20 @@ namespace Korisnik.Areas.Identity.Data
 
         [Column(Order = 4)]
         public string ImeIzazvanog { get; set; }
+
+        [Column(Order = 5)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        public DateTime? VremePoslatogIzazova { get; set; }
+
+        [Column(Order = 6)]
+        public string ZakazanoVreme { get; set; }
+
+        [Column(Order = 7)]
+        public string ZakazanDatum { get; set; }
+
+        [Column(Order = 8)]
+        public string Mesto { get; set; }
+
+
     }
 }

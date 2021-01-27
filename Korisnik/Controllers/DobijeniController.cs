@@ -55,7 +55,10 @@ namespace Korisnik.Controllers
                 IdIzazavanog = izazov.IdIzazavanog,
                 IdIzazivaoca = izazov.IdIzazivaoca,
                 ImeIzazivaoca = izazov.ImeIzazivaoca,
-                ImeIzazvanog = izazov.ImeIzazvanog
+                ImeIzazvanog = izazov.ImeIzazvanog,
+                Mesto = izazov.Mesto,
+                ZakazanoVreme = izazov.ZakazanoVreme,
+                ZakazanDatum = izazov.ZakazanDatum
             };
 
             await prihvaceniIzazovi.AddIzazovi(novIzazov);

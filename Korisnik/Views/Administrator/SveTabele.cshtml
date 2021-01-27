@@ -73,20 +73,26 @@ else
                     <th scope="col">#</th>
                     <th scope="col">Izazivaoc</th>
                     <th scope="col">Izazvani</th>
+                    <th>Zakazano Mesto</th>
+                    <th>Zakazano Vreme i Datum</th>
+                    <th>Vreme Slanja</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var lista in Model.Izazovi)
                 {
-                    <tr>
-                        <td>@lista.IdIzazova</td>
-                        <td>@lista.ImeIzazivaoca</td>
-                        <td>@lista.ImeIzazvanog</td>
-                        <td>
-                            <a class="btn btn-danger" asp-controller="Administrator" asp-action="ObrisiIzazov" asp-route-id="@lista.IdIzazova"> Obrisi</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@lista.IdIzazova</td>
+                    <td>@lista.ImeIzazivaoca</td>
+                    <td>@lista.ImeIzazvanog</td>
+                    <td>@lista.Mesto</td>
+                    <td>@lista.ZakazanoVreme  @lista.ZakazanDatum</td>
+                    <td>@lista.VremePoslatogIzazova</td>
+                    <td>
+                        <a class="btn btn-danger" asp-controller="Administrator" asp-action="ObrisiIzazov" asp-route-id="@lista.IdIzazova"> Obrisi</a>
+                    </td>
+                </tr>
                 }
 
             </tbody>
@@ -114,20 +120,24 @@ else
                 <th scope="col">#</th>
                 <th scope="col">Izazivaoc</th>
                 <th scope="col">Izazvani</th>
+                <th scope="col">Zakazano Mesto</th>
+                <th scope="col">Zakazano Vreme i Datum</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var lista in Model.PrihvaceniIzazovi)
             {
-                <tr>
-                    <td>@lista.IdIzazova</td>
-                    <td>@lista.ImeIzazivaoca</td>
-                    <td>@lista.ImeIzazvanog</td>
-                    <td>
-                        <a class="btn btn-danger" asp-controller="Administrator" asp-action="ObrisiPrihvacen" asp-route-id="@lista.IdIzazova"> Obrisi</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>@lista.IdIzazova</td>
+                <td>@lista.ImeIzazivaoca</td>
+                <td>@lista.ImeIzazvanog</td>
+                <td>@lista.Mesto</td>
+                <td>@lista.ZakazanoVreme  @lista.ZakazanDatum</td>
+                <td>
+                    <a class="btn btn-danger" asp-controller="Administrator" asp-action="ObrisiPrihvacen" asp-route-id="@lista.IdIzazova"> Obrisi</a>
+                </td>
+            </tr>
             }
 
         </tbody>

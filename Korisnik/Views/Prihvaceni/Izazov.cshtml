@@ -11,25 +11,28 @@
 @if (Model.ulogovaniPrihvatio.Any())
  {
     <form method="post">
-        <table class="table table-dark w-25">
+        <table class="table table-dark">
 
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Izazvao</th>
                     <th scope="col">Izazvan</th>
+                    <th scope="col">Zakazano Mesto</th>
+                    <th scope="col">Zakazano Vreme i Datum</th>
                 </tr>
             </thead>
             <tbody>
 
                 @foreach (var lista in Model.ulogovaniPrihvatio)
                  {
-                    <tr>
-                        <td>@Convert.ToString(i++)</td>
-                        <td>@lista.ImeIzazivaoca</td>
-                        <td>@lista.ImeIzazvanog </td>
-
-                    </tr>
+                 <tr>
+                    <td>@Convert.ToString(i++)</td>
+                    <td>@lista.ImeIzazivaoca</td>
+                    <td>@lista.ImeIzazvanog </td>
+                    <td>@lista.Mesto</td>
+                    <td>@lista.ZakazanoVreme  @lista.ZakazanDatum</td>
+                 </tr>
                  }
 
             </tbody>

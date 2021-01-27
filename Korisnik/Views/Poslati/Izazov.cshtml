@@ -11,29 +11,34 @@
 @if (Model.Izazovi.Any())
  {
     <form method="post">
-    <table class="table table-dark w-25">
+    <table class="table table-bordered table-dark">
 
              <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Izazvao</th>
-                    <th scope="col"></th>
+                    <th>#</th>
+                    <th>Izazvao</th>
+                    <th>Zakazano Mesto</th>
+                    <th>Zakazano Vreme i Datum</th>
+                    <th>Vreme Slanja</th>
                 </tr>
              </thead>
              <tbody>
 
             @foreach (var lista in Model.Izazovi)
              {
-                <tr>
-                    <td>@Convert.ToString(i++)</td>
-                    <td>@lista.ImeIzazvanog</td>
-                    <td>
-                        <div class="form-group">
-                             <input  hidden asp-for="IdIzazova" value="@lista.IdIzazova" id="@lista.IdIzazova" type="submit" />      
+                 <tr>
+                     <td>@Convert.ToString(i++)</td>
+                     <td>@lista.ImeIzazvanog</td>
+                     <td>@lista.Mesto</td>
+                     <td>@lista.ZakazanoVreme  @lista.ZakazanDatum</td>
+                     <td>@lista.VremePoslatogIzazova</td>
+                     <td>
+                         <div class="form-group">
+                             <input hidden asp-for="IdIzazova" value="@lista.IdIzazova" id="@lista.IdIzazova" type="submit" />
                              <label class="btn btn-danger" for="@lista.IdIzazova">Obrisi</label>
-                        </div>    
-                    </td>
-                </tr>
+                         </div>
+                     </td>
+                 </tr>
              }
              </tbody>
     </table>

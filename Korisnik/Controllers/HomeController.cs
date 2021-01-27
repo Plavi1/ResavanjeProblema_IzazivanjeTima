@@ -40,7 +40,17 @@ namespace ASPNETCOREMVC.Controllers
 
         public IActionResult Pocetna()
         {
+            var ulogovan = signInManager.IsSignedIn(User);
+
+            if(ulogovan == false)
+            {
             return View();
+            }
+            else
+            {
+            return RedirectToAction("Index");
+            }
+           
         }
 
         //Prva strana na koju udje korisnik kada se uloguje 

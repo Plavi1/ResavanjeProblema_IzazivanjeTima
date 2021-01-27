@@ -111,6 +111,18 @@ namespace Korisnik.Migrations
                     b.Property<string>("ImeIzazvanog")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Mesto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("VremePoslatogIzazova")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ZakazanDatum")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZakazanoVreme")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("IdIzazova");
 
                     b.ToTable("Prihvaceni_Izazovi");
@@ -135,6 +147,18 @@ namespace Korisnik.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImeIzazvanog")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mesto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("VremePoslatogIzazova")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ZakazanDatum")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZakazanoVreme")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdIzazova");

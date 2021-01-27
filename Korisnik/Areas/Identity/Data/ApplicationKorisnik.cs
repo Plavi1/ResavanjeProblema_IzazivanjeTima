@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Korisnik.Areas.Identity.Data
 {
-    // Add profile data for application users by adding properties to the ApplicationKorisnik class
     public class ApplicationKorisnik : IdentityUser
     { 
         // Dodali smo jos 2 tipa koja ce se ubaciti zajedno sa ostalim identity tipovima 
@@ -18,5 +17,6 @@ namespace Korisnik.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string Prezime { get; set; }
+        
     }
 }

@@ -90,41 +90,54 @@ namespace Korisnik.Controllers
         //LISTA IZAZOVA ---[POST]---
 
         [HttpPost]
-        public async Task<IActionResult> Izazov(PosaljiIzazov_ViewModel model)                    // Dolaze nam informacije od nase forme na View stranci
-        {                 
-            if (model.IdIzazvanog != "false")                                                    // Nama je samo bitan IdIzazvanog zato proveravamo da li je vrednost "false" da bi nastavili
+        public async Task<IActionResult> Izazov(PosaljiIzazov_ViewModel model)                    
+        {
+
+            if (model.IdIzazvanog == "false")
+            {                                                                                    //
+                ModelState.AddModelError("IdIzazvanog", "Niste izabrao Korisnika!");             // Ako ne selektujemo checkbox docice nam vrednost "falls" (stringu), zato ubacujemo Error u ModelState
+            }                                                                                    //               on ce spreciti ubacivanje podataka i izabacice Validation za cekiranje
+            else
             {
+                ModelState.Remove("IdIzazvanog");                                                // Ako je cekiran checkbox, onda moramo da izuzmemo ModelState za IdIzazvanog jer ce nam             
+            }                                                                                    //  pri proveri u sledecem koraku proveravati ModelState, i na kraju ce izbaciti error (string umesto bool)
+           
+
+            if (ModelState.IsValid)                                                                
+            {
+          
                 var idUlogovanog = userManager.GetUserId(HttpContext.User);
 
                 var Izazvani = await korisnikRepository.GetKorisnik(model.IdIzazvanog);
                 var ImeIzazvanog = Izazvani.Ime;
 
-                Izazovi novIzazov = new Izazovi()                                                // Ako je prosledjen IdIzazvanog automatcki pravimo nov model koji zelimo da ubacimo u bazu podataka
+                Izazovi novIzazov = new Izazovi()                                                 // Ako je prosledjen IdIzazvanog automatcki pravimo nov model koji zelimo da ubacimo u bazu podataka
                 {
-                    IdIzazavanog = model.IdIzazvanog,                                            // <--        
-                    IdIzazivaoca = idUlogovanog,                                                 // <--        Ubacujemo sve vrednosti
-                    ImeIzazvanog = ImeIzazvanog,                                                 // <--         koje sadrzi nas model
-                    ImeIzazivaoca = korisnikRepository.GetKorisnik(idUlogovanog).Result.Ime      // <--
-                    
+                    IdIzazavanog = model.IdIzazvanog,                                             // <--        
+                    IdIzazivaoca = idUlogovanog,                                                  // <--        Ubacujemo sve vrednosti
+                    ImeIzazvanog = ImeIzazvanog,                                                  // <--         koje sadrzi nas model
+                    ImeIzazivaoca = korisnikRepository.GetKorisnik(idUlogovanog).Result.Ime,      // <--
+                    VremePoslatogIzazova = DateTime.Now,                                          // <--
+                    Mesto = model.Mesto.ToString(),                                               // <--
+                    ZakazanDatum = model.Datum,                                                   // <--
+                    ZakazanoVreme = model.Vreme                                                   // <--
+
                 };
                 await izazoviRepository.AddIzazovi(novIzazov);                                   // Pozivamo nas Repository da zelim da dodamo nov izazov u bazu podataka
                 return RedirectToAction("Index", "Home");                                        // Vracamo se na pocetnu stranu
             }
+           
+             
+            //Treba napraviti klasu koja ce pozivati ovaj filter za tabelu, da bi mogli da pozovemo metodu u PosaljiIzazov_VievModel
 
+            IEnumerable<ApplicationKorisnik> lista = FilterPrikaza();                        // Metoda gore navedena 
 
-            //OVO ZAMENITI SA "Client validation"  [Razmisljaj da li je ovaj pristup dobar]
+            PosaljiIzazov_ViewModel ponovo = new PosaljiIzazov_ViewModel {
+                ApplicationKorisnik = lista,                                                 //{ --  Dodeljujemo ViewModelu   
+            };
+            
+            return View(ponovo);
 
-            IEnumerable<ApplicationKorisnik> lista = FilterPrikaza();                            // Metoda gore navedena
-            model.ApplicationKorisnik = lista;                                                   //{ --  Dodeljujemo ViewModelu 
-            model.ErrorPoruka = "Nisi selektovao ni jednog korisnika!";                          //{ --  Kada se prosire opcije, to jest novi input mozemo da stavljamo Error poruku za svaki slucaj posebno
-                                                                                                                                                             
-
-            return View(model);
         }
-
-
-
-
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿@using Korisnik.ViewModel
+@using Korisnik.ViewModel.Enum
 @model PosaljiIzazov_ViewModel
 
 @{ ViewData["Title"] = "ListaKorisnika";
@@ -6,12 +7,40 @@
 @{ int i = 1; }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<h1>Lista  Korisnika</h1>
 
 @if (Model.ApplicationKorisnik.Any())
  {
- <form method="post">
-    <table class="table table-dark">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <form method="post">
+    <div class="row">
+        <div class="col-sm-6" style="height:100px">
+            <div class="card text-white bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Izaberite Vreme</h5>
+                    <p class="card-text">U koje zelite da odigrate izazov sa drugim korisnikom</p>
+                    <label for="date">Datum: </label><input asp-for="Datum" value="date" type="date">
+                    <label for="time">Vreme: </label><input asp-for="Vreme" value="date" type="time" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 style="height:100px">
+            <div class="card text-white bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Izaberite Mesto</h5>
+                    <p class="card-text">Gde zelite da odigrate izazov sa drugim korisnikom</p>
+                    <select asp-for="Mesto"
+                            asp-items="Html.GetEnumSelectList<Mesta>()">
+                        <option value="">Selektuj mesto</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 style="margin-top:20px">Izaberite  Korisnika</h1>
+
+
+    <table class="table table-hover table-dark">
 
         <thead>
             <tr>
@@ -24,24 +53,22 @@
         <tbody>
 
             @foreach (var list in Model.ApplicationKorisnik)
-             {
-                <tr>
-                    <td>@Convert.ToString(i++)</td>
-                    <td>@list.Ime</td>
-                    <td>@list.Prezime</td>
-                    <td>
-                        <div class="form-group">
-                            <input asp-for="IdIzazvanog" value="@list.Id" type="checkbox" />
-                        </div>
-                    </td>
-                </tr>
- }
+            {
+<tr>
+    <td>@Convert.ToString(i++)</td>
+    <td>@list.Ime</td>
+    <td>@list.Prezime</td>
+    <td>
+        <div class="form-group">
+            <input asp-for="IdIzazvanog" value="@list.Id" type="checkbox" />
+        </div>
+    </td>
+</tr>}
         </tbody>
     </table>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Posalji</button> <a type="button" asp-controller="home" asp-action="Index" class="btn btn-secondary btn-sm">Pocetna</a>
-        <span class="text-danger">@Model.ErrorPoruka</span>
+        <button type="submit" class="btn btn-primary btn-lg">Posalji</button> <a type="button" asp-controller="home" asp-action="Index" class="btn btn-secondary btn-sm">Pocetna</a> 
     </div>
 </form>
  }
