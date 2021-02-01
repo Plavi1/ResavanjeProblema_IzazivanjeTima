@@ -1,6 +1,7 @@
 ﻿using Korisnik.Areas.Identity.Data;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Korisnik.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Korisnik.Controllers
 {
+    [Authorize]
     public class PrihvaceniController : Controller
     {
 

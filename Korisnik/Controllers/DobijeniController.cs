@@ -2,6 +2,7 @@
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Korisnik.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Korisnik.Controllers
 {
+    [Authorize]
     public class DobijeniController : Controller
     {
         private readonly UserManager<ApplicationKorisnik> userManager;

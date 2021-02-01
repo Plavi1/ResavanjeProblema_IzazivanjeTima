@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Korisnik.Areas.Identity.Data
+@inject SignInManager<ApplicationKorisnik> SignInManager
+@inject UserManager<ApplicationKorisnik> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,21 +15,24 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Korisnik</a>  
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Korisnik</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <partial name="_LoginPartial.cshtml" />
-                </div>           
-                <div class="float-right">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Administracija 
-                        </button>
-                        <div class="dropdown-menu ">
-                            <a class="dropdown-item" asp-area="" asp-controller="Administrator" asp-action="ListRoles">ManageRoles</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="Administrator" asp-action="SveTabele">Sve Tabele</a>
-                        </div>
-                    </div>
                 </div>
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("SuperAdmin"))
+                {
+    <div class="float-right">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Administracija
+            </button>
+            <div class="dropdown-menu ">
+                <a class="dropdown-item" asp-area="" asp-controller="Administrator" asp-action="ListRoles">ManageRoles</a>
+                <a class="dropdown-item" asp-area="" asp-controller="Administrator" asp-action="SveTabele">Sve Tabele</a>
+            </div>
+        </div>
+    </div>
+                }
             </div>
         </nav>
     </header>
@@ -37,7 +44,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - Korisnik - 
+            &copy; 2020 - Korisnik -
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

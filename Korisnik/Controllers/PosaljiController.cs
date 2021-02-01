@@ -37,7 +37,7 @@ namespace Korisnik.Controllers
         //METODA KOJA SE PONAVLJA ( cilj filtriranje prikaza )
 
         private IEnumerable<ApplicationKorisnik> FilterPrikaza()                                
-        { 
+        {     
             var idUlogovanog = userManager.GetUserId(HttpContext.User);                                            // Nalazi ID ulogovanog    
             var lista = korisnikRepository.SviKorisnici().Where(a => a.Id != idUlogovanog);                        // Svi korisnici izuzev ulogovanog korisnika
             var izazvaoUlogovani = izazoviRepository.SviIzazovi().Where(b => b.IdIzazivaoca == idUlogovanog);      // Svi izazovi gde se Id ulogovanog slaze sa Id-jem izazivaoca 
@@ -65,6 +65,8 @@ namespace Korisnik.Controllers
             {                                                                                    // {--      Filtrira sve ID-jeve izazvanih 
                 lista = lista.Where(e => e.Id != item.IdIzazavanog);                             // {--       kojima je ulogovani poslao izazov
             }                                                                                    // {--
+
+            lista = lista.Where(e => e.UserName != "Admin@admin.com");                           // Filtriramo admina 
 
             return lista;
         }

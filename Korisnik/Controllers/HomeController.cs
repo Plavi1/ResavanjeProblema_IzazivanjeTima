@@ -36,7 +36,11 @@ namespace ASPNETCOREMVC.Controllers
             this.izazoviRepository = izazoviRepository;
             _logger = logger;
         }
-
+       [Authorize(Roles = "SuperAdmin")]
+       public IActionResult Admin()
+        {
+            return View();
+        }
 
         public IActionResult Pocetna()
         {
@@ -54,39 +58,47 @@ namespace ASPNETCOREMVC.Controllers
         }
 
         //Prva strana na koju udje korisnik kada se uloguje 
-
+        
         [HttpGet]
         public IActionResult Index(Index_ViewModel model)
         {
             var ulogovan = signInManager.IsSignedIn(User);
-
+            
             if (ulogovan == false)
             {
                 return RedirectToAction("Pocetna");
             }
             else
             {
-                var idUlogovanog = userManager.GetUserId(HttpContext.User);
+                var admin = User.IsInRole("SuperAdmin");
+                if (admin == true)
+                {
+                    return RedirectToAction("Admin");
+                }
+                else
+                {
+                    var idUlogovanog = userManager.GetUserId(HttpContext.User);
 
-                var ulogovanPoslao = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == idUlogovanog);           //{--  Broj Izaova koje je POSLAO
-                model.BrojIzazova = ulogovanPoslao.Count().ToString();                                                    //{--     ulogovani korisnik
+                    var ulogovanPoslao = izazoviRepository.SviIzazovi().Where(a => a.IdIzazivaoca == idUlogovanog);           //{--  Broj Izaova koje je POSLAO
+                    model.BrojIzazova = ulogovanPoslao.Count().ToString();                                                    //{--     ulogovani korisnik
 
-                var ulogovanDobio = izazoviRepository.SviIzazovi().Where(c => c.IdIzazavanog == idUlogovanog);            //{--  Broj Izazova koje je DOBIO
-                model.IzazvanBroj = ulogovanDobio.Count().ToString();                                                     //{--   od strane drugih korisnika
+                    var ulogovanDobio = izazoviRepository.SviIzazovi().Where(c => c.IdIzazavanog == idUlogovanog);            //{--  Broj Izazova koje je DOBIO
+                    model.IzazvanBroj = ulogovanDobio.Count().ToString();                                                     //{--   od strane drugih korisnika
 
-                var listaSvihPrihvacenihIzazova = prihvaceniIzazovi.SviIzazovi();                                         //{--
-                int brojPrihvacenih = 0;                                                                                  //{--
-                foreach (var item in listaSvihPrihvacenihIzazova)                                                         //{--
-                {                                                                                                         //{--  Broj Prihvacenih izazova koje
-                    if (item.IdIzazavanog == idUlogovanog || item.IdIzazivaoca == idUlogovanog)                           //{--   je prihvatio korinsink
-                    {                                                                                                     //{--
-                        brojPrihvacenih++;                                                                                //{--
-                    }                                                                                                     //{--
-                }                                                                                                         //{--
-                model.BrojPrihvacenih = brojPrihvacenih.ToString();                                                       //{--
+                    var listaSvihPrihvacenihIzazova = prihvaceniIzazovi.SviIzazovi();                                         //{--
+                    int brojPrihvacenih = 0;                                                                                  //{--
+                    foreach (var item in listaSvihPrihvacenihIzazova)                                                         //{--
+                    {                                                                                                         //{--  Broj Prihvacenih izazova koje
+                        if (item.IdIzazavanog == idUlogovanog || item.IdIzazivaoca == idUlogovanog)                           //{--   je prihvatio korinsink
+                        {                                                                                                     //{--
+                            brojPrihvacenih++;                                                                                //{--
+                        }                                                                                                     //{--
+                    }                                                                                                         //{--
+                    model.BrojPrihvacenih = brojPrihvacenih.ToString();                                                       //{--
 
 
-                return View(model);
+                    return View(model);
+                }
             }
         }
 
