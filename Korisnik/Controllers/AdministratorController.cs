@@ -39,15 +39,15 @@ namespace Korisnik.Controllers
             //SVE TABELE [GET]
 
             [HttpGet]
-            public IActionResult SveTabele()                                                      //
-            {                                                                                     // 
-                SveTabele_ViewModel sveTabele = new SveTabele_ViewModel                           //     PROST PRIKAZ SVIH TABELA IZ Micrsoft SQL Servera
-                {                                                                                 //              [PRIVREMENEO  /home/svetable]
-                    ApplicationKorisnik = korisnikRepository.SviKorisnici(),                      //
-                    Izazovi = izazoviRepository.SviIzazovi(),                                     //
-                    PrihvaceniIzazovi = prihvaceniIzazovi.SviIzazovi()                            //
-                };                                                                                //
-                return View(sveTabele);                                                           //
+            public IActionResult SveTabele()                                                      
+            {                                                                                     
+                SveTabele_ViewModel sveTabele = new SveTabele_ViewModel                                                        //     PROST PRIKAZ SVIH TABELA IZ Micrsoft SQL Servera
+                {                                                                                                              //              [PRIVREMENEO  /home/svetable]
+                    ApplicationKorisnik = korisnikRepository.SviKorisnici().Where(e => e.UserName != "Admin@admin.com"),       //
+                    Izazovi = izazoviRepository.SviIzazovi(),                                                                  //
+                    PrihvaceniIzazovi = prihvaceniIzazovi.SviIzazovi()                                                         //
+                };                                                                                                             //
+                return View(sveTabele);                                                                                        //
             }
    
             //  ----OBRISI IZAZAOV----
@@ -224,7 +224,7 @@ namespace Korisnik.Controllers
             [HttpGet]
             public IActionResult ListRoles()
             {
-                var roles = roleManager.Roles;
+                var roles = roleManager.Roles.Where(e=> e.Name != "SuperAdmin");
                 return View(roles);
             }
 
