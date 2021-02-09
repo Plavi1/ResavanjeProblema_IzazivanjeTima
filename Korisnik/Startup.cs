@@ -1,5 +1,7 @@
+using Korisnik.Filteri;
 using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
+using Korisnik.Repositorys.OgranicenjaRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,10 +25,11 @@ namespace Korisnik
         {
 
             services.AddScoped<IKorisnikRepository, SQLKorisnikRepository>();                           //Dodali Dependency Injection
-            services.AddScoped<IIzazoviRepository, SQLIzazoviRepository>();                             //Dodali Dependency Injection
-            services.AddScoped<IPrihvaceni_IzazoviRepository, SQLPrihvaceni_IzazoviRepository>();       //Dodali Dependency Injection
-            
-         
+            services.AddScoped<IIzazoviRepository, SQLIzazoviRepository>();                             //
+            services.AddScoped<IPrihvaceni_IzazoviRepository, SQLPrihvaceni_IzazoviRepository>();       //
+            services.AddScoped<IFilter, Filter>();                                                      //
+            services.AddScoped<IOgranicenjaRepository, SQLOgranicenjaRepository>();                     //     
+
             services.AddRazorPages();                                                                   //Dodali
             services.AddControllersWithViews();
         }

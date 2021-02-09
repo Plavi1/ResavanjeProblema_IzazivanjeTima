@@ -14,6 +14,7 @@ namespace Korisnik.Areas.Identity.Data
             string ADMIN_ID = "02174cf0–9412–4cfe-afbf-59f706d72cf6";
             string ROLE_ID = "341743f0-asd2–42de-afbf-59kmkkmk72cf6";   
 
+            
             // Pravimo Admin Role
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {

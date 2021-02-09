@@ -1,6 +1,7 @@
 ﻿using Korisnik.Areas.Identity.Data;
 using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
+using Korisnik.Repositorys.OgranicenjaRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Korisnik.ViewModel;
 using Microsoft.AspNetCore.Authorization;
@@ -18,6 +19,7 @@ namespace Korisnik.Controllers
         private readonly UserManager<ApplicationKorisnik> userManager;
         private readonly IPrihvaceni_IzazoviRepository prihvaceniIzazovi;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IOgranicenjaRepository ogranicenjaRepository;
         private readonly IKorisnikRepository korisnikRepository;
         private readonly IIzazoviRepository izazoviRepository;
 
@@ -25,11 +27,13 @@ namespace Korisnik.Controllers
                               IIzazoviRepository izazoviRepository,
                               UserManager<ApplicationKorisnik> userManager,
                               IPrihvaceni_IzazoviRepository prihvaceniIzazovi,
-                              RoleManager<IdentityRole> roleManager)                            
+                              RoleManager<IdentityRole> roleManager, 
+                              IOgranicenjaRepository ogranicenjaRepository)                            
         {
             this.userManager = userManager;
             this.prihvaceniIzazovi = prihvaceniIzazovi;
             this.roleManager = roleManager;
+            this.ogranicenjaRepository = ogranicenjaRepository;
             this.korisnikRepository = korisnikRepository;
             this.izazoviRepository = izazoviRepository;
         }
@@ -101,9 +105,7 @@ namespace Korisnik.Controllers
                     return View("NotFound");
                 }
 
- 
-                var userClaims = await userManager.GetClaimsAsync(user);
-                var userRoles = await userManager.GetRolesAsync(user);
+
 
                 var model = new EditUser_ViewModel
                 {
@@ -112,10 +114,8 @@ namespace Korisnik.Controllers
                     UserName = user.UserName,
                     Ime = user.Ime,
                     Prezime = user.Prezime,
-                    Claims = userClaims.Select(c => c.Value).ToList(),
-                    Roles = userRoles
                 };
-
+                model.Ogranicenja = ogranicenjaRepository.SvaOgranicenja().Where(e => e.IdKorisnika == user.Id).Select(e=> e.IdSaKojimOgranicavamKorisnika).ToList();
                 return View(model);
             }
 
@@ -397,6 +397,104 @@ namespace Korisnik.Controllers
                     return View("ListRoles");
                 }
             }
-    }   
+
+
+        // ----------------------------------------------OGRANICAVANJE KORISNIKA-------------------------------------------------------------------------------------------------------
+
+
+        // GET OgraniciKorisnika
+
+        [HttpGet]
+        public async Task<IActionResult> OgraniciKorisnika(string ograniciId)
+        {
+            ViewBag.ogranici = ograniciId;
+
+            var korisnik = await korisnikRepository.GetKorisnik(ograniciId);                              
+
+            if (korisnik == null)             
+            {
+                ViewBag.ErrorMessage = $"Korisnik sa Id = {ograniciId} nije pronadjen";
+                return View("NotFound");
+            }
+                                                                                                          
+            var model = new List<OgranicenKorisnik_ViewModel>();
+            var ogranicenja = ogranicenjaRepository.SvaOgranicenja().Where(e=> e.IdKorisnika == ograniciId);
+            var korisnici = korisnikRepository.SviKorisnici().Where(e => e.UserName != "Admin@admin.com" && e.Id != ograniciId)
+                                                             .Select(user=> new {UserName=user.UserName,UserId=user.Id}).ToList();
+
+            foreach (var user in korisnici)
+            {
+                var ogranicenKorisnikViewModel = new OgranicenKorisnik_ViewModel
+                {
+                    UserId = user.UserId,
+                    UserName = user.UserName
+                };
+
+                if (ogranicenja.Where(e => e.IdSaKojimOgranicavamKorisnika == user.UserId).Any())
+                {
+                    ogranicenKorisnikViewModel.IsSelected = true;
+                }
+                else
+                {
+                    ogranicenKorisnikViewModel.IsSelected = false;
+                }
+
+                model.Add(ogranicenKorisnikViewModel);
+            }
+            
+            return View(model);
+        }
+
+
+       // POST Ogranici Korisnika
+
+        [HttpPost]
+        public async Task<IActionResult> OgraniciKorisnika(List<OgranicenKorisnik_ViewModel> model, string ograniciId)
+        {
+            var korisnik = korisnikRepository.GetKorisnik(ograniciId);
+
+            if (korisnik == null)
+            {
+                ViewBag.ErrorMessage = $"Korisnik sa = {ograniciId} ne postoji";
+                return View("NotFound");
+            }
+
+            for (int i = 0; i < model.Count; i++)                                                                                         
+            {
+                var user = await userManager.FindByIdAsync(model[i].UserId);
+                var idOgranicenja = ogranicenjaRepository.SvaOgranicenja().Where(e => e.IdSaKojimOgranicavamKorisnika == model[i].UserId && e.IdKorisnika == ograniciId).Select(e => e.Id);
+
+                int a = 0;
+                if (idOgranicenja.Any())
+                {
+                    a++;
+                }
+     
+                if (model[i].IsSelected && a == 0)                  
+                {
+                    Ogranicenja ogranici = new Ogranicenja { IdKorisnika = ograniciId, IdSaKojimOgranicavamKorisnika = user.Id };
+                    await ogranicenjaRepository.AddOgranicenje(ogranici);                                  
+                  
+                }
+                else if (!model[i].IsSelected && a==1)                    
+                {
+                    await ogranicenjaRepository.Delete(idOgranicenja.First());                      
+                   
+                }
+                else
+                {
+                    continue;                                                                              
+                }
+                    if (i < (model.Count - 1))                                                         
+                        continue;
+                    else
+                        return RedirectToAction("EditUser", new { Id = ograniciId });                        
+            }
+
+            return RedirectToAction("EditUser", new { Id = ograniciId });
+        }
+
+
+    }
 
 }

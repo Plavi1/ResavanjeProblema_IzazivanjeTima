@@ -38,9 +38,9 @@ namespace Korisnik.Controllers
             { 
                 if (item.IdIzazavanog != idUlogovanog && item.IdIzazivaoca != idUlogovanog)
                 {
-                    listaSvihPrihvacenihIzazov = listaSvihPrihvacenihIzazov.Where(e => e != item).ToList();     //Imao sam velikih problema sa ovim kodom, nije htelo da uspe bez .ToList() [ISTRAZI ZASTO]
-                }
-            }
+                    listaSvihPrihvacenihIzazov = listaSvihPrihvacenihIzazov.Where(e => e != item).ToList();     // Imao sam velikih problema sa ovim kodom, nije htelo da uspe bez .ToList() [ISTRAZI ZASTO]
+                }                                                                                               // Zato sto je .ToList() immediate operator, to jest query se izvrsava odma cim ga pozovemo
+            }                                                                                                   // Ako ti nije jasno pogledaj LINQ 
 
             PrihvaceniIzazovi_ViewModel model = new PrihvaceniIzazovi_ViewModel();
             model.ulogovaniPrihvatio = listaSvihPrihvacenihIzazov;

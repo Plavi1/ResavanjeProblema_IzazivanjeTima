@@ -10,8 +10,7 @@ namespace Korisnik.ViewModel
     {
             public EditUser_ViewModel()
             {
-                Claims = new List<string>();
-                Roles = new List<string>();
+                Ogranicenja = new List<string>();
             }
 
             public string Id { get; set; }
@@ -28,8 +27,6 @@ namespace Korisnik.ViewModel
             [Required]
             public string Prezime { get; set; }
 
-            public List<string> Claims { get; set; }
-
-            public IList<string> Roles { get; set; }  
+            public List<string> Ogranicenja { get; set; }
     }
 }
