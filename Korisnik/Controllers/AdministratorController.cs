@@ -462,8 +462,8 @@ namespace Korisnik.Controllers
             for (int i = 0; i < model.Count; i++)                                                                                         
             {
                 var user = await userManager.FindByIdAsync(model[i].UserId);
-                var idOgranicenja = ogranicenjaRepository.SvaOgranicenja().Where(e => e.IdSaKojimOgranicavamKorisnika == model[i].UserId && e.IdKorisnika == ograniciId).Select(e => e.Id);
-
+                var idOgranicenja = ogranicenjaRepository.SvaOgranicenja().Where(e => e.IdSaKojimOgranicavamKorisnika == model[i].UserId && e.IdKorisnika == ograniciId).Select(e => e.Id);  //PROBAJ SA .Single()
+                                                                                                                                                                                             
                 int a = 0;
                 if (idOgranicenja.Any())
                 {

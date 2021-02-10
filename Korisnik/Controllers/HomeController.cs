@@ -1,6 +1,7 @@
 ﻿using Korisnik.Areas.Identity.Data;
 using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
+using Korisnik.Repositorys.OgranicenjaRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Korisnik.ViewModel;
 using Microsoft.AspNetCore.Authorization;
@@ -21,17 +22,20 @@ namespace ASPNETCOREMVC.Controllers
         private readonly IIzazoviRepository izazoviRepository;
         private readonly ILogger<HomeController> _logger;
         private readonly SignInManager<ApplicationKorisnik> signInManager;
+        private readonly IOgranicenjaRepository ogranicenjaRepository;
 
         public HomeController(ILogger<HomeController> logger, 
                               IKorisnikRepository korisnikRepository, 
                               IIzazoviRepository izazoviRepository,
                               UserManager<ApplicationKorisnik> userManager,
                               IPrihvaceni_IzazoviRepository prihvaceniIzazovi,
-                              SignInManager<ApplicationKorisnik> signInManager)
+                              SignInManager<ApplicationKorisnik> signInManager,
+                              IOgranicenjaRepository ogranicenjaRepository)
         {
             this.userManager = userManager;
             this.prihvaceniIzazovi = prihvaceniIzazovi;
             this.signInManager = signInManager;
+            this.ogranicenjaRepository = ogranicenjaRepository;
             this.korisnikRepository = korisnikRepository;
             this.izazoviRepository = izazoviRepository;
             _logger = logger;
@@ -39,7 +43,19 @@ namespace ASPNETCOREMVC.Controllers
        [Authorize(Roles = "SuperAdmin")]
        public IActionResult Admin()
         {
-            return View();
+            int brojKorisnika = korisnikRepository.SviKorisnici().Where(e => e.UserName != "Admin@admin.com").Count();
+            int brojAktivnihIzazova = izazoviRepository.SviIzazovi().Count();
+            int brojPrihvacenihIzazova = prihvaceniIzazovi.SviIzazovi().Count();
+            int brojOgranicenja = ogranicenjaRepository.SvaOgranicenja().Count();
+
+            Admin_ViewModel model = new Admin_ViewModel
+            {
+                BrojAktivnihIzazova = brojAktivnihIzazova,
+                BrojKorisnika = brojKorisnika,
+                BrojOgranicenja = brojOgranicenja,
+                BrojPrihvacenihIzazova = brojPrihvacenihIzazova
+            };
+            return View(model);
         }
 
         public IActionResult Pocetna()
