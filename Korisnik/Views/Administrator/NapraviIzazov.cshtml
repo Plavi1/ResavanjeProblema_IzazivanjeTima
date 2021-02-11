@@ -1,0 +1,57 @@
+﻿@using Korisnik.ViewModel;
+@using Korisnik.ViewModel.Enum;
+@model NapraviIzazov_ViewModel
+<style>
+    .row{
+        padding-bottom:5em;
+    }
+
+</style>
+
+
+<form method="post">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="row">
+        <div class="col-sm-6" style="height:100px">
+            <div class="card text-white bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Izaberite Vreme</h5>
+                    <p class="card-text">U koje zelite da odigrate izazov sa drugim korisnikom</p>
+                    <label for="date">Datum: </label><input asp-for="Datum" value="date" type="date" />
+                    <label for="time">Vreme: </label><input asp-for="Vreme" value="date" type="time" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6" style="height:100px">
+            <div class="card text-white bg-dark" style="padding-bottom:10px">
+                <div class="card-body">
+                    <h5 class="card-title">Izaberite Mesto</h5>
+                    <p class="card-text">Gde zelite da odigrate izazov sa drugim korisnikom</p>
+                    <select asp-for="Mesto"
+                            asp-items="Html.GetEnumSelectList<Mesta>()">
+                        <option value="">Selektuj mesto</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Izaberi Izazivaoca</h3>
+    <select class="custom-select bg-dark text-white" size="6" asp-for="IdIzazivaoca">
+        @foreach (var lista in Model.ApplicationKorisnik)
+        {
+            <option value="@lista.Id">@lista.UserName</option>
+        }
+    </select>
+   
+    <h3>Izaberi Izazvanog</h3>
+    <select class="custom-select bg-dark text-white" size="6" asp-for="IdIzazvanog">
+        @foreach (var lista in Model.ApplicationKorisnik)
+        {
+            <option value="@lista.Id">@lista.UserName</option>
+        }
+        </select>
+
+    <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-lg">Posalji</button> <a type="button" asp-controller="home" asp-action="Admin" class="btn btn-secondary btn-sm">Pocetna</a>
+    </div>
+</form>

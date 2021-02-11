@@ -2927,3 +2927,4 @@ C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_Izazivanj
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Home\Pocetna.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Home\Admin.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Administrator\OgraniciKorisnika.cshtml.g.cs
+C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Administrator\NapraviIzazov.cshtml.g.cs

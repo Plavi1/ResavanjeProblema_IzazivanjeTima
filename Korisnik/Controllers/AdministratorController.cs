@@ -1,4 +1,5 @@
 ﻿using Korisnik.Areas.Identity.Data;
+using Korisnik.Filteri;
 using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.Repositorys.OgranicenjaRepo;
@@ -7,6 +8,7 @@ using Korisnik.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +22,7 @@ namespace Korisnik.Controllers
         private readonly IPrihvaceni_IzazoviRepository prihvaceniIzazovi;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IOgranicenjaRepository ogranicenjaRepository;
+        private readonly IFilter filteri;
         private readonly IKorisnikRepository korisnikRepository;
         private readonly IIzazoviRepository izazoviRepository;
 
@@ -28,12 +31,14 @@ namespace Korisnik.Controllers
                               UserManager<ApplicationKorisnik> userManager,
                               IPrihvaceni_IzazoviRepository prihvaceniIzazovi,
                               RoleManager<IdentityRole> roleManager, 
-                              IOgranicenjaRepository ogranicenjaRepository)                            
+                              IOgranicenjaRepository ogranicenjaRepository,
+                              IFilter filteri)                            
         {
             this.userManager = userManager;
             this.prihvaceniIzazovi = prihvaceniIzazovi;
             this.roleManager = roleManager;
             this.ogranicenjaRepository = ogranicenjaRepository;
+            this.filteri = filteri;
             this.korisnikRepository = korisnikRepository;
             this.izazoviRepository = izazoviRepository;
         }
@@ -494,6 +499,72 @@ namespace Korisnik.Controllers
             return RedirectToAction("EditUser", new { Id = ograniciId });
         }
 
+
+        // ----------------------------------------------NAPRAVI IZAZOV-------------------------------------------------------------------------------------------------------
+
+
+        //GET Napravi Izazov
+
+        [HttpGet]
+        public ViewResult NapraviIzazov()
+        {
+            var idUlogovanog = userManager.GetUserId(HttpContext.User);                                  
+
+            NapraviIzazov_ViewModel mymodel = new NapraviIzazov_ViewModel();
+
+            IEnumerable<ApplicationKorisnik> lista = filteri.PosaljiIzazovFilterTabele(idUlogovanog);     
+
+            mymodel.ApplicationKorisnik = lista;                                                          
+
+            return View(mymodel);                                                                          
+        }
+
+
+
+        //POST Napravi Izazov
+
+        [HttpPost]
+        public async Task<IActionResult> NapraviIzazov(NapraviIzazov_ViewModel model)
+        {
+
+            if (model.IdIzazvanog == model.IdIzazivaoca)
+            {                                                                                 
+                ModelState.AddModelError("IdIzazvanog", "Izabrali ste istog Korisnika!");             
+            }                                                                                    
+           
+
+            if (ModelState.IsValid)
+            {
+                var Izazvani = await korisnikRepository.GetKorisnik(model.IdIzazvanog);
+                var ImeIzazvanog = Izazvani.Ime;
+
+                Prihvaceni_Izazovi novIzazov = new Prihvaceni_Izazovi()                                                
+                {
+                    IdIzazavanog = model.IdIzazvanog,                                                
+                    IdIzazivaoca = model.IdIzazivaoca,                                                 
+                    ImeIzazvanog = ImeIzazvanog,                                                  
+                    ImeIzazivaoca = korisnikRepository.GetKorisnik(model.IdIzazivaoca).Result.Ime,     
+                    VremePoslatogIzazova = DateTime.Now,                                          
+                    Mesto = model.Mesto.ToString(),                                              
+                    ZakazanDatum = model.Datum,                                                   
+                    ZakazanoVreme = model.Vreme         
+                };
+
+                await prihvaceniIzazovi.AddIzazovi(novIzazov);                               
+                return RedirectToAction("Index", "Home");                                     
+            }
+
+            var idUlogovanog = userManager.GetUserId(HttpContext.User);
+            IEnumerable<ApplicationKorisnik> lista = filteri.PosaljiIzazovFilterTabele(idUlogovanog);
+
+            NapraviIzazov_ViewModel ponovo = new NapraviIzazov_ViewModel
+            {
+                ApplicationKorisnik = lista,                                                 
+            };
+
+            return View(ponovo);
+
+        }
 
     }
 
