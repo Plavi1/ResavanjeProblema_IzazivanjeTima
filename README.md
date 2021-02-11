@@ -19,5 +19,5 @@
 * Lista prihvacenih izazova od strane oba korisnika.
 
 > # Admin sistem:
-* Admin ima mogucnost da menja, dodaje i brise sve poslate i prihvacene izazove. 
+* Admin ima mogucnost da pravi i brise sve poslate i prihvacene izazove. 
 * Takodje da ogranici mogucnost svakom korisniku kome sve moze da posalje izazov.
