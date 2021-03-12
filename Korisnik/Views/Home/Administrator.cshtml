@@ -1,0 +1,119 @@
+﻿@using Korisnik.ViewModel;
+@model Admin_ViewModel
+
+<style>
+    .karta-stats {
+        padding-top: 1em;
+    }
+    .plava {
+        border-left: 10px solid; 
+        border-left-color: dodgerblue ;
+    }
+    .zuta {
+        border-left: 10px solid;
+        border-left-color: orange;
+    }
+    .zelena {
+        border-left: 10px solid;
+        border-left-color: forestgreen;
+    }
+    .crvena {
+        border-left: 10px solid;
+        border-left-color: red;
+    }
+    h6{
+        margin-top:-20px;
+    }
+    .karta-funkcija {
+        padding-top: 1em;
+    }
+    .btn-1 {
+        margin-left: 30px;
+        margin-right: 30px;
+        padding: 1.5px;
+    }
+    .btn-2 {
+        padding: 2px;
+    }
+    .btn-3 {
+        padding: 2px;
+        margin-left: 13px;
+        margin-right: 13px;
+    }
+    
+</style>
+<body>
+    <div class="text-center">
+        <h1 class="display-4"><b>Glavni interfejs</b></h1>
+        <h4> <b style="color:red">ZA ADMINE</b></h4>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="karta-stats">
+                <div class="card plava shadow rounded">
+                    <div class="card-body">
+                        <h6 class="card-title" style="color:dodgerblue">
+                            Broj Registrovanih Clanova
+                        </h6>
+                        <h4>@Model.BrojKorisnika</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="karta-stats">
+                <div class="card zuta shadow rounded">
+                    <div class="card-body">
+                        <h6 class="card-title" style="color:orange">
+                            Broj Aktivnih Izazova
+                        </h6>
+                        <h4>@Model.BrojAktivnihIzazova</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="karta-stats">
+                <div class="card zelena shadow rounded">
+                    <div class="card-body">
+                        <h6 class="card-title" style="color:forestgreen">
+                            Broj Prihvacenih Izazova
+                        </h6>
+                        <h4>@Model.BrojPrihvacenihIzazova</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="karta-stats">
+                <div class="card crvena shadow rounded">
+                    <div class="card-body">
+                        <h6 class="card-title" style="color:red">
+                            Broj Ogranicenja
+                        </h6>
+                        <h4>@Model.BrojOgranicenja</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 karta-funkcija">
+            <div class="card text-center shadow rounded" style="padding-bottom:52px;">
+                <div class="card-header">
+                    <h3>Funkcije</h3>
+                </div>
+                <div class="card-body">
+                    <div class="text-center" style="padding-top:10px">
+                        <a class="btn btn-info shadow-lg rounded " asp-area="" asp-controller="Administrator" asp-action="SveTabele">
+                            <p class="btn-1"> Sve Tabele</p>
+
+                        </a>
+                    </div>
+                    <div class="text-center" style="padding-top:30px">
+                        <a class="btn btn-info shadow-lg rounded" asp-area="" asp-controller="Administrator" asp-action="ListRoles"><p class="btn-2">Upravljaj Rolovima</p></a>
+                    </div>
+                    <div class="text-center" style="padding-top:30px">
+                        <a class="btn btn-info shadow-lg rounded " asp-area="" asp-controller="Administrator" asp-action="NapraviIzazov">
+                            <p class="btn-3"> Napravi Izazov</p>
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

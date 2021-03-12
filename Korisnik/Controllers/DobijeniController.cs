@@ -47,7 +47,6 @@ namespace Korisnik.Controllers
             
             return RedirectToAction("Izazov");
         }
-
         public async Task<IActionResult> Prihvatam(int id)
         {
             var izazov = await izazoviRepository.GetIzazovi(id);

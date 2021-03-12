@@ -16,13 +16,7 @@
     <hr />
     @if (SignInManager.IsSignedIn(User))
      {
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class="btn-group-vertical h-100">
+        <div class="btn-group-vertical h-100" style="margin-top:120px">
                 @if (Model.BrojIzazova != "0")
                  {
                         <a type="button" class="btn btn-dark" asp-area="" asp-controller="Poslati" asp-action="Izazov">

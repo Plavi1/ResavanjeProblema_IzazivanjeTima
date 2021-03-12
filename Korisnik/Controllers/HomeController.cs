@@ -41,7 +41,7 @@ namespace ASPNETCOREMVC.Controllers
             _logger = logger;
         }
        [Authorize(Roles = "SuperAdmin")]
-       public IActionResult Admin()
+       public IActionResult Administrator()
         {
             int brojKorisnika = korisnikRepository.SviKorisnici().Where(e => e.UserName != "Admin@admin.com").Count();
             int brojAktivnihIzazova = izazoviRepository.SviIzazovi().Count();
@@ -89,7 +89,7 @@ namespace ASPNETCOREMVC.Controllers
                 var admin = User.IsInRole("SuperAdmin");
                 if (admin == true)
                 {
-                    return RedirectToAction("Admin");
+                    return RedirectToAction("Administrator");
                 }
                 else
                 {

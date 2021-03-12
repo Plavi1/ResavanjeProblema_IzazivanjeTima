@@ -29,7 +29,7 @@
                     <td class="w-50">
                         <form method="post" asp-action="DeleteUser" asp-route-id="@list.Id">
 
-                            <a asp-action="EditUser" asp-controller="Administrator"
+                            <a asp-controller="Administrator" asp-action="EditUser"
                                asp-route-id="@list.Id" class="btn btn-primary">Promeni\Ogranici</a>
 
                             <span id="confirmDeleteSpan_@list.Id" style="display:none">
@@ -90,7 +90,7 @@ else
                     <td>@lista.ZakazanoVreme  @lista.ZakazanDatum</td>
                     <td>@lista.VremePoslatogIzazova</td>
                     <td>
-                        <a class="btn btn-danger" asp-controller="Administrator" asp-action="ObrisiIzazov" asp-route-id="@lista.IdIzazova"> Obrisi</a>
+                        <a  class="btn btn-danger" asp-controller="Administrator" asp-action="ObrisiIzazov" asp-route-id="@lista.IdIzazova"> Obrisi</a>
                     </td>
                 </tr>
                 }
