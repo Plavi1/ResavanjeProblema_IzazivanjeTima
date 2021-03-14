@@ -21,35 +21,28 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\_ViewImports.cshtml"
-using Korisnik.Areas.Identity;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\_ViewImports.cshtml"
-using Korisnik.Areas.Identity.Pages;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\_ViewImports.cshtml"
-using Korisnik.Areas.Identity.Data;
+using Korisnik;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 1 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\Account\_ViewImports.cshtml"
-using Korisnik.Areas.Identity.Pages.Account;
+using Korisnik.Areas.Identity.Pages.Account.Manage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\Account\_ViewImports.cshtml"
+using Korisnik.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bde4ce0e1e071dd1c604acd6b6ffba2a5f6b3a0a", @"/Areas/Identity/Pages/Account/Logout.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"54add9b0a89358c306b76726c30bfa31e2eb85b7", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"431469f2d26a5a5afcd24bfa187be725f28a92a6", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42541e25a9ffcafa0c4ddb099d4d4329c83606c7", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"519044514314c707ccdfbfdee816ed5226b74f79", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_Logout : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form-inline"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -108,7 +101,7 @@ using Korisnik.Areas.Identity.Pages.Account;
 #line hidden
 #nullable disable
             WriteLiteral("            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bde4ce0e1e071dd1c604acd6b6ffba2a5f6b3a0a6657", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bde4ce0e1e071dd1c604acd6b6ffba2a5f6b3a0a6383", async() => {
                 WriteLiteral("\n                <button type=\"submit\" class=\"nav-link btn btn-link text-dark\">Click here to Logout</button>\n            ");
             }
             );

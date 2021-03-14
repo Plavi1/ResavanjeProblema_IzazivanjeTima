@@ -1,4 +1,5 @@
-﻿using Korisnik.Areas.Identity.Data;
+﻿using Korisnik.Areas;
+using Korisnik.Models;
 using Korisnik.ViewModel.Enum;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

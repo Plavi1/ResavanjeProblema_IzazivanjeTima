@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Korisnik.Models;
 using Microsoft.AspNetCore.Authorization;
-using Korisnik.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace Korisnik.Areas.Identity.Pages.Account
+namespace Korisnik.Areas.Identity.Pages.Account.Manage
 {
     [AllowAnonymous]
     public class ResetPasswordModel : PageModel

@@ -20,44 +20,30 @@ using Microsoft.AspNetCore.Identity;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\_ViewImports.cshtml"
-using Korisnik.Areas.Identity;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\_ViewImports.cshtml"
-using Korisnik.Areas.Identity.Pages;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\_ViewImports.cshtml"
-using Korisnik.Areas.Identity.Data;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 1 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\Account\_ViewImports.cshtml"
-using Korisnik.Areas.Identity.Pages.Account;
+using Korisnik.Areas.Identity.Pages.Account.Manage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\Account\_ViewImports.cshtml"
+using Korisnik.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 1 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml"
-using Korisnik.Areas.Identity.Pages.Account.Manage;
+using Korisnik;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"af85cac7204e004088a88e5561011064c204d3a8", @"/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"54add9b0a89358c306b76726c30bfa31e2eb85b7", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"431469f2d26a5a5afcd24bfa187be725f28a92a6", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fcd17b72d4d01d700b220d63c16ea7972fe2e342", @"/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42541e25a9ffcafa0c4ddb099d4d4329c83606c7", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"519044514314c707ccdfbfdee816ed5226b74f79", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6e4be31ed4f9b86ebcaba15852b1b91924c29534", @"/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_Manage_PersonalData : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("download-data"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -121,7 +107,7 @@ Write(ViewData["Title"]);
             <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
         </p>
         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "af85cac7204e004088a88e5561011064c204d3a88924", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "af85cac7204e004088a88e5561011064c204d3a88374", async() => {
                 WriteLiteral("\n            <button class=\"btn btn-primary\" type=\"submit\">Download</button>\n        ");
             }
             );
@@ -143,7 +129,7 @@ Write(ViewData["Title"]);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n        <p>\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "af85cac7204e004088a88e5561011064c204d3a810829", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "af85cac7204e004088a88e5561011064c204d3a810279", async() => {
                 WriteLiteral("Delete");
             }
             );
@@ -163,7 +149,7 @@ Write(ViewData["Title"]);
             WriteLiteral("\n        </p>\n    </div>\n</div>\n\n");
             DefineSection("Scripts", async() => {
                 WriteLiteral("\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "af85cac7204e004088a88e5561011064c204d3a812279", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "af85cac7204e004088a88e5561011064c204d3a811729", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();

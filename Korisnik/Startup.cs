@@ -1,5 +1,5 @@
 using Korisnik.Filteri;
-using Korisnik.Models;
+using Korisnik.Areas;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.Repositorys.OgranicenjaRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;

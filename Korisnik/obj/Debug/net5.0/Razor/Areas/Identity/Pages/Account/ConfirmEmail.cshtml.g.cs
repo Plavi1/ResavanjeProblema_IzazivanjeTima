@@ -21,35 +21,28 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\_ViewImports.cshtml"
-using Korisnik.Areas.Identity;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\_ViewImports.cshtml"
-using Korisnik.Areas.Identity.Pages;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\_ViewImports.cshtml"
-using Korisnik.Areas.Identity.Data;
+using Korisnik;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 1 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\Account\_ViewImports.cshtml"
-using Korisnik.Areas.Identity.Pages.Account;
+using Korisnik.Areas.Identity.Pages.Account.Manage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\Areas\Identity\Pages\Account\_ViewImports.cshtml"
+using Korisnik.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f7ef4d9609f5d0cc6f5a4e0e9cdc067e7a357e77", @"/Areas/Identity/Pages/Account/ConfirmEmail.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"54add9b0a89358c306b76726c30bfa31e2eb85b7", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"431469f2d26a5a5afcd24bfa187be725f28a92a6", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42541e25a9ffcafa0c4ddb099d4d4329c83606c7", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"519044514314c707ccdfbfdee816ed5226b74f79", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_ConfirmEmail : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
         #pragma warning disable 1998

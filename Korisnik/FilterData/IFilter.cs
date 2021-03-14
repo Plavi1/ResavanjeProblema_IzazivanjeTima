@@ -1,4 +1,4 @@
-﻿using Korisnik.Areas.Identity.Data;
+﻿using Korisnik.Models;
 using System.Collections.Generic;
 
 namespace Korisnik.Filteri

@@ -1,5 +1,4 @@
-﻿using Korisnik.Areas.Identity.Data;
-using Korisnik.Data;
+﻿using Korisnik.Areas;
 using System;
 using System.Collections.Generic;
 using System.Linq;

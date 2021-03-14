@@ -1,4 +1,5 @@
-﻿using Korisnik.Areas.Identity.Data;
+﻿using Korisnik.Areas;
+using Korisnik.Models;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Korisnik.ViewModel;
 using Microsoft.AspNetCore.Authorization;

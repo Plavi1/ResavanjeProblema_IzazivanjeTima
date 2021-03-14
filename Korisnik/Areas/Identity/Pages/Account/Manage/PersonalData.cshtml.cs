@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Korisnik.Areas.Identity.Data;
+using Korisnik.Areas;
+using Korisnik.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

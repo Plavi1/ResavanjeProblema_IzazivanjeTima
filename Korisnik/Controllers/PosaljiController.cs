@@ -1,4 +1,4 @@
-﻿using Korisnik.Areas.Identity.Data;
+﻿using Korisnik.Areas;
 using Korisnik.Filteri;
 using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Korisnik.Models;
 using Microsoft.AspNetCore.Authorization;
-using Korisnik.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace Korisnik.Areas.Identity.Pages.Account
+namespace Korisnik.Areas.Identity.Pages.Account.Manage
 {
     [AllowAnonymous]
     public class LogoutModel : PageModel
