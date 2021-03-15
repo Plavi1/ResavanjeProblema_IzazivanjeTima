@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Korisnik.Models;
+using Korisnik.ViewModel.Enum;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Korisnik.Areas
+namespace Korisnik.Models
 {
     public class KorisnikDbContext : IdentityDbContext<ApplicationKorisnik>
     {
@@ -20,6 +23,23 @@ namespace Korisnik.Areas
         {
             base.OnModelCreating(builder);
             builder.Seed();
+            builder.Entity<Izazovi>()                                         //{     
+                        .Property(e => e.Mesto)                               //{
+                        .HasConversion(                                       //{ Konvertovanje Enuma u string
+                        v => v.ToString(),                                    //{
+                        v => (Mesta)Enum.Parse(typeof(Mesta), v)              //{
+                      );
+            builder.Entity<Prihvaceni_Izazovi>()                              //{     
+                        .Property(e => e.Mesto)                               //{
+                        .HasConversion(                                       //{ Konvertovanje Enuma u string
+                        v => v.ToString(),                                    //{
+                        v => (Mesta)Enum.Parse(typeof(Mesta), v)              //{
+                      );
+            foreach (var foreignKey in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))                 // Cascade od Delete za ForeignKeys
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.Cascade;
+            }
+            
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

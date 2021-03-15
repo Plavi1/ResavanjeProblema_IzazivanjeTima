@@ -1,5 +1,4 @@
-﻿using Korisnik.Areas;
-using Korisnik.Models;
+﻿using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.ViewModel;
 using Microsoft.AspNetCore.Authorization;
@@ -46,6 +45,7 @@ namespace Korisnik.Controllers
         public async Task<IActionResult> Izazov(PoslatiIzazovi_ViewModel model)           
         {           
             await izazoviRepository.Delete(model.IdIzazova);
+            TempData["obavestenje"] = "Izazov je obrisan!";
 
             return RedirectToAction("Izazov");
         }

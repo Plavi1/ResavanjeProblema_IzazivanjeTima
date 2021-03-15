@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Korisnik.Models;
+﻿using Korisnik.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -14,6 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace Korisnik.Areas.Identity.Pages.Account.Manage
 {
@@ -52,6 +49,10 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            [Required]
+            public string Ime { get; set; }
+            [Required]
+            public string Prezime { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -122,7 +123,7 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationKorisnik { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationKorisnik { UserName = Input.Email, Email = Input.Email, Ime = Input.Ime, Prezime = Input.Prezime};
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Korisnik.Areas
+namespace Korisnik.Models
 {
     public static class ModelBuilderExtension
     { 

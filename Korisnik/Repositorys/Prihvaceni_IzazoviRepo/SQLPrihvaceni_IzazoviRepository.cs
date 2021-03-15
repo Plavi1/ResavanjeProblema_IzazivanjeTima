@@ -1,4 +1,4 @@
-﻿using Korisnik.Areas;
+﻿using Korisnik.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

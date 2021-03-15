@@ -1,9 +1,8 @@
-﻿using Korisnik.Areas;
-using Korisnik.Models;
+﻿using Korisnik.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Korisnik.Areas
+namespace Korisnik.Models
 {
     public class SQLKorisnikRepository : IKorisnikRepository
     {

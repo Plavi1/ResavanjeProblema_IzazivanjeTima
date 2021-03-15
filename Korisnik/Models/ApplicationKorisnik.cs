@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Korisnik.Models
@@ -13,6 +14,6 @@ namespace Korisnik.Models
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string Prezime { get; set; }
-        
+
     }
 }

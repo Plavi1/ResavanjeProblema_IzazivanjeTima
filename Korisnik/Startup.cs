@@ -1,5 +1,5 @@
 using Korisnik.Filteri;
-using Korisnik.Areas;
+using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.Repositorys.OgranicenjaRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
@@ -30,7 +30,11 @@ namespace Korisnik
             services.AddScoped<IFilter, Filter>();                                                      //
             services.AddScoped<IOgranicenjaRepository, SQLOgranicenjaRepository>();                     //     
 
-           
+            services.AddAuthentication()
+               .AddGoogle(options => {
+                   options.ClientId = "365588186718-172m5c6md3c0goe9k58oljc0ichbd378.apps.googleusercontent.com";
+                   options.ClientSecret = "yJaNwKgcFZZxlSbKFNHU6mZw";
+               });
             services.AddRazorPages();                                                                   //Dodali
             services.AddControllersWithViews();
         }

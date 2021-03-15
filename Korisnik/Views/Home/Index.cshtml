@@ -14,33 +14,41 @@
     <h1 class="display-4">Dobrodosli</h1>
     <h4>na glavni interfejs</h4>
     <hr />
+    @if (TempData["obavestenje"] != null)
+    {
+        <div class="col-sm-12 text-center">
+            <div class="alert alert-primary">
+                @TempData["obavestenje"]
+            </div>
+        </div>
+    }
     @if (SignInManager.IsSignedIn(User))
-     {
+    {
         <div class="btn-group-vertical h-100" style="margin-top:120px">
-                @if (Model.BrojIzazova != "0")
-                 {
-                        <a type="button" class="btn btn-dark" asp-area="" asp-controller="Poslati" asp-action="Izazov">
-                                 Poslata <span class="badge badge-light col-md-3">@Model.BrojIzazova</span>
-                        </a>
-                 }
+            @if (Model.BrojIzazova != "0")
+            {
+                <a type="button" class="btn btn-dark" asp-area="" asp-controller="Poslati" asp-action="Izazov">
+                    Poslata <span class="badge badge-light col-md-3">@Model.BrojIzazova</span>
+                </a>
+            }
 
-                <a type="button" class="btn btn-info btn-lg" asp-area="" asp-controller="Posalji" asp-action="Izazov">Posalji NOV IZAZOV</a>
+            <a type="button" class="btn btn-info btn-lg" asp-area="" asp-controller="Posalji" asp-action="Izazov">Posalji NOV IZAZOV</a>
 
-                @if (Model.IzazvanBroj != "0")
-                 {
-                    <a type="button" class="btn btn-warning" asp-area="" asp-controller="Dobijeni" asp-action="Izazov">@Model.IzazvanBroj Novi Zahtev na cekanju</a>
-                 }
+            @if (Model.IzazvanBroj != "0")
+            {
+                <a type="button" class="btn btn-warning" asp-area="" asp-controller="Dobijeni" asp-action="Izazov">@Model.IzazvanBroj Novi Zahtev na cekanju</a>
+            }
         </div>
 
         <br />
         <br />
 
         @if (Model.BrojPrihvacenih != "0")
-         {
-         <a type="button" class="btn btn-success"  asp-controller="Prihvaceni" asp-action="Izazov">
-            Prihvacena <span class="badge badge-light col-md-3" style="width:auto">@Model.BrojPrihvacenih</span>
-         </a>
-         }
-     }
+        {
+            <a type="button" class="btn btn-success" asp-controller="Prihvaceni" asp-action="Izazov">
+                Prihvacena <span class="badge badge-light col-md-3" style="width:auto">@Model.BrojPrihvacenih</span>
+            </a>
+        }
+    }
 </div>
 

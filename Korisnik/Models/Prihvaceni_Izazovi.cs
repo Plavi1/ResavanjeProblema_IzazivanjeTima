@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Korisnik.ViewModel.Enum;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Korisnik.Areas
+namespace Korisnik.Models
 {
     public class Prihvaceni_Izazovi
     {
@@ -10,20 +11,19 @@ namespace Korisnik.Areas
         [Column(Order = 0)]
         public int IdIzazova { get; set; }
 
-
+        [ForeignKey("Korisnik")]
         [Required]
         [Column(Order = 1)]
         public string IdIzazivaoca { get; set; }
+        public ApplicationKorisnik Korisnik { get; set; }
 
-
+       
         [Required]
         [Column(Order = 2)]
         public string IdIzazavanog { get; set; }
 
-
         [Column(Order = 3)]
         public string ImeIzazivaoca { get; set; }
-
 
         [Column(Order = 4)]
         public string ImeIzazvanog { get; set; }
@@ -39,8 +39,9 @@ namespace Korisnik.Areas
         public string ZakazanDatum { get; set; }
 
         [Column(Order = 8)]
-        public string Mesto { get; set; }
+        public Mesta Mesto { get; set; }
 
-
+   
     }
+
 }

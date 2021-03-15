@@ -1,5 +1,4 @@
-﻿using Korisnik.Areas;
-using Korisnik.Models;
+﻿using Korisnik.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Korisnik.Areas;
 using Korisnik.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

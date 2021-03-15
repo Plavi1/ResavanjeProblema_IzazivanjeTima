@@ -1,12 +1,8 @@
-﻿using Korisnik.Areas;
-using Korisnik.Models;
-using Microsoft.AspNetCore.Identity;
-using System;
+﻿using Korisnik.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace Korisnik.Areas
+namespace Korisnik.Models
 {
     public interface IKorisnikRepository
     {

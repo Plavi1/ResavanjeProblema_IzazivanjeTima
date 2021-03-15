@@ -2929,3 +2929,4 @@ C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_Izazivanj
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Administrator\SveTabele.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Home\Administrator.cshtml.g.cs
 C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\pc\Desktop\ASP.NET Core MVC VEZBA\1.ZADATAK\ResavanjeProblema_IzazivanjeTima-master\Korisnik\obj\Debug\net5.0\Razor\Views\Dobijeni\Promeni.cshtml.g.cs

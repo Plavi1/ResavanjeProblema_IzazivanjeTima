@@ -1,5 +1,4 @@
-﻿using Korisnik.Areas;
-using Korisnik.Models;
+﻿using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Korisnik.ViewModel;
@@ -45,9 +44,12 @@ namespace Korisnik.Controllers
         public async Task<IActionResult> Obrisi(int id)
         {
             await izazoviRepository.Delete(id);
-            
+            TempData["obavestenje"] = "Izazov je odbijen!";
+
             return RedirectToAction("Izazov");
         }
+
+
         public async Task<IActionResult> Prihvatam(int id)
         {
             var izazov = await izazoviRepository.GetIzazovi(id);
@@ -65,8 +67,66 @@ namespace Korisnik.Controllers
 
             await prihvaceniIzazovi.AddIzazovi(novIzazov);
             await izazoviRepository.Delete(id);
+            TempData["obavestenje"] = "Izazov je prihvacen!";
 
             return RedirectToAction("Izazov");
+        }
+    
+        [HttpGet]
+        public async Task<IActionResult> Promeni(int id)
+        {
+            var izazov = await izazoviRepository.GetIzazovi(id);
+
+            if (izazov == null)
+            {
+                ViewBag.ErrorMessage = $"Izazov nije pronadjen ";
+                return View("NotFound");
+            }
+            if(izazov.IdIzazavanog == userManager.GetUserId(User))
+            {
+            Promeni_ViewModel model = new Promeni_ViewModel
+                        {
+                            ImeIzazivaoca = izazov.ImeIzazivaoca,
+                            IdIzazova = izazov.IdIzazova,
+                            IdIzazivaoca = izazov.IdIzazivaoca,
+                            Mesto = izazov.Mesto,
+                            ZakazanoVreme = izazov.ZakazanoVreme,
+                            ZakazanDatum = izazov.ZakazanDatum
+                        };
+
+             return View(model);
+            }
+            ViewBag.ErrorMessage = $"Izazov nije pronadjen ";
+            return View("NotFound");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Promeni(Promeni_ViewModel model)
+        {
+           
+                if (ModelState.IsValid)
+                {
+                    var izazov = await izazoviRepository.GetIzazovi(model.IdIzazova);
+                    if (izazov == null)
+                    {
+                        ViewBag.ErrorMessage = $"Izazov nije pronadjen ";
+                        return View("NotFound");
+                    }
+
+                    izazov.IdIzazivaoca = userManager.GetUserId(User);
+                    izazov.ImeIzazivaoca = userManager.GetUserAsync(User).Result.Ime;
+                    izazov.IdIzazavanog = model.IdIzazivaoca;
+                    izazov.ImeIzazvanog = model.ImeIzazivaoca;
+                    izazov.Mesto = model.Mesto;
+                    izazov.ZakazanDatum = model.ZakazanDatum;
+                    izazov.ZakazanoVreme = model.ZakazanoVreme;
+
+                    await izazoviRepository.UpdateIzazovi(izazov);
+                    TempData["message"] = "Promene su poslate korisniku!";
+
+                    return RedirectToAction("Index", "Home");
+                }
+                return View(model);
+          
         }
     }
 }

@@ -33,9 +33,9 @@
                 <td>@lista.VremePoslatogIzazova</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a class="btn btn-danger" asp-controller="Dobijeni" asp-action="Obrisi" asp-route-id="@lista.IdIzazova"> Obrisi</a>
+                        <a class="btn btn-danger" asp-controller="Dobijeni" asp-action="Obrisi" asp-route-id="@lista.IdIzazova"> Odbi</a>
                         <a class="btn btn-success" asp-controller="Dobijeni" asp-action="Prihvatam" asp-route-id="@lista.IdIzazova"> Prihvatam</a>
-                        <button class="btn btn-warning">Promeni vreme</button>
+                        <a class="btn btn-warning" asp-controller="Dobijeni" asp-action="Promeni" asp-route-id="@lista.IdIzazova">Promeni</a>
                     </div>
                 </td>
 

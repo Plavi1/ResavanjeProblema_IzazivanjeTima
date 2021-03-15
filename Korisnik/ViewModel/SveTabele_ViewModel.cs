@@ -1,5 +1,4 @@
-﻿using Korisnik.Areas;
-using Korisnik.Models;
+﻿using Korisnik.Models;
 using System.Collections.Generic;
 
 namespace Korisnik.ViewModel

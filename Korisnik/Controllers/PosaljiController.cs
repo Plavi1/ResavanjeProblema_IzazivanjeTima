@@ -1,6 +1,5 @@
-﻿using Korisnik.Areas;
+﻿using Korisnik.Models;
 using Korisnik.Filteri;
-using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
 using Korisnik.ViewModel;
@@ -86,12 +85,13 @@ namespace Korisnik.Controllers
                     ImeIzazvanog = ImeIzazvanog,                                                  // <--         koje sadrzi nas model
                     ImeIzazivaoca = korisnikRepository.GetKorisnik(idUlogovanog).Result.Ime,      // <--
                     VremePoslatogIzazova = DateTime.Now,                                          // <--
-                    Mesto = model.Mesto.ToString(),                                               // <--
+                    Mesto = model.Mesto.Value,                                               // <--
                     ZakazanDatum = model.Datum,                                                   // <--
                     ZakazanoVreme = model.Vreme                                                   // <--
 
                 };
                 await izazoviRepository.AddIzazovi(novIzazov);                                   // Pozivamo nas Repository da zelim da dodamo nov izazov u bazu podataka
+                TempData["obavestenje"] = "Izazov je poslat!";
                 return RedirectToAction("Index", "Home");                                        // Vracamo se na pocetnu stranu
             }
 

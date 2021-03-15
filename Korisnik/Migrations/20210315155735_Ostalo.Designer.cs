@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Korisnik.Migrations
 {
     [DbContext(typeof(KorisnikDbContext))]
-    [Migration("20201209123842_UbacivanjeKorisnka")]
-    partial class UbacivanjeKorisnka
+    [Migration("20210315155735_Ostalo")]
+    partial class Ostalo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Korisnik.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
 
-            modelBuilder.Entity("Korisnik.Areas.Identity.Data.ApplicationKorisnik", b =>
+            modelBuilder.Entity("Korisnik.Models.ApplicationKorisnik", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -90,6 +90,128 @@ namespace Korisnik.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "3ec87029-a6af-49e1-8c8b-52adeae7e20d",
+                            Email = "Admin@admin.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN@ADMIN.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMqBHJaHOfI3MWjkInh6gyZ2j7+UU0A+DsAN6EB0UoFgsFP84CDStPWIjvqRskcSlA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "13a2257a-4fa1-4c7d-8d28-abaf90f67655",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin@admin.com"
+                        });
+                });
+
+            modelBuilder.Entity("Korisnik.Models.Izazovi", b =>
+                {
+                    b.Property<int>("IdIzazova")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("IdIzazavanog")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdIzazivaoca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ImeIzazivaoca")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImeIzazvanog")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mesto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("VremePoslatogIzazova")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ZakazanDatum")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZakazanoVreme")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdIzazova");
+
+                    b.HasIndex("IdIzazivaoca");
+
+                    b.ToTable("Izazovi");
+                });
+
+            modelBuilder.Entity("Korisnik.Models.Ogranicenja", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("IdKorisnika")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IdSaKojimOgranicavamKorisnika")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdKorisnika");
+
+                    b.ToTable("Ogranicenja");
+                });
+
+            modelBuilder.Entity("Korisnik.Models.Prihvaceni_Izazovi", b =>
+                {
+                    b.Property<int>("IdIzazova")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("IdIzazavanog")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdIzazivaoca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ImeIzazivaoca")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImeIzazvanog")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mesto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("VremePoslatogIzazova")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ZakazanDatum")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZakazanoVreme")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdIzazova");
+
+                    b.HasIndex("IdIzazivaoca");
+
+                    b.ToTable("Prihvaceni_Izazovi");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -117,6 +239,15 @@ namespace Korisnik.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "341743f0-asd2–42de-afbf-59kmkkmk72cf6",
+                            ConcurrencyStamp = "341743f0-asd2–42de-afbf-59kmkkmk72cf6",
+                            Name = "SuperAdmin",
+                            NormalizedName = "SuperAdmin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -204,6 +335,13 @@ namespace Korisnik.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
+                            RoleId = "341743f0-asd2–42de-afbf-59kmkkmk72cf6"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -227,6 +365,39 @@ namespace Korisnik.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Korisnik.Models.Izazovi", b =>
+                {
+                    b.HasOne("Korisnik.Models.ApplicationKorisnik", "Korisnik")
+                        .WithMany()
+                        .HasForeignKey("IdIzazivaoca")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Korisnik");
+                });
+
+            modelBuilder.Entity("Korisnik.Models.Ogranicenja", b =>
+                {
+                    b.HasOne("Korisnik.Models.ApplicationKorisnik", "Korisnik")
+                        .WithMany()
+                        .HasForeignKey("IdKorisnika")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Korisnik");
+                });
+
+            modelBuilder.Entity("Korisnik.Models.Prihvaceni_Izazovi", b =>
+                {
+                    b.HasOne("Korisnik.Models.ApplicationKorisnik", "Korisnik")
+                        .WithMany()
+                        .HasForeignKey("IdIzazivaoca")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Korisnik");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -238,7 +409,7 @@ namespace Korisnik.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Korisnik.Areas.Identity.Data.ApplicationKorisnik", null)
+                    b.HasOne("Korisnik.Models.ApplicationKorisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -247,7 +418,7 @@ namespace Korisnik.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Korisnik.Areas.Identity.Data.ApplicationKorisnik", null)
+                    b.HasOne("Korisnik.Models.ApplicationKorisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -262,7 +433,7 @@ namespace Korisnik.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Korisnik.Areas.Identity.Data.ApplicationKorisnik", null)
+                    b.HasOne("Korisnik.Models.ApplicationKorisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -271,7 +442,7 @@ namespace Korisnik.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Korisnik.Areas.Identity.Data.ApplicationKorisnik", null)
+                    b.HasOne("Korisnik.Models.ApplicationKorisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

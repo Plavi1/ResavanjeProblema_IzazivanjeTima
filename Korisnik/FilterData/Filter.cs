@@ -1,5 +1,4 @@
-﻿using Korisnik.Areas;
-using Korisnik.Models;
+﻿using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.Repositorys.OgranicenjaRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
@@ -63,26 +62,6 @@ namespace Korisnik.Filteri
             }                                                                                   // {--
 
             return lista;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

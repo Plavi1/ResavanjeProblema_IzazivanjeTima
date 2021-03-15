@@ -1,6 +1,5 @@
-﻿using Korisnik.Areas;
+﻿using Korisnik.Models;
 using Korisnik.Filteri;
-using Korisnik.Models;
 using Korisnik.Repositorys.IzazoviRepo;
 using Korisnik.Repositorys.OgranicenjaRepo;
 using Korisnik.Repositorys.Prihvaceni_IzazoviRepo;
@@ -545,7 +544,7 @@ namespace Korisnik.Controllers
                     ImeIzazvanog = ImeIzazvanog,                                                  
                     ImeIzazivaoca = korisnikRepository.GetKorisnik(model.IdIzazivaoca).Result.Ime,     
                     VremePoslatogIzazova = DateTime.Now,                                          
-                    Mesto = model.Mesto.ToString(),                                              
+                    Mesto = model.Mesto.Value,                                              
                     ZakazanDatum = model.Datum,                                                   
                     ZakazanoVreme = model.Vreme         
                 };
