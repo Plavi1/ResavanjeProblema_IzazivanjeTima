@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Korisnik.Models
 {
-    public class KorisnikDbContext : IdentityDbContext<ApplicationKorisnik>
+    public class KorisnikDbContext : IdentityDbContext<Korisnici>
     {
         public KorisnikDbContext(DbContextOptions<KorisnikDbContext> options)
             : base(options)
         {
         }
-        public IEnumerable<ApplicationKorisnik> ApplicationKorisnik { get; internal set; }
+        public IEnumerable<Korisnici> ApplicationKorisnik { get; internal set; }
         public DbSet<Izazovi> Izazovi { get; set; }
         public DbSet<Prihvaceni_Izazovi> Prihvaceni_Izazovi { get; set; }
         public DbSet<Ogranicenja> Ogranicenja { get; set; }
@@ -22,7 +22,8 @@ namespace Korisnik.Models
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Seed();
+            builder.SeedSuperAdmin();
+            builder.SeedKorisnici();
             builder.Entity<Izazovi>()                                         //{     
                         .Property(e => e.Mesto)                               //{
                         .HasConversion(                                       //{ Konvertovanje Enuma u string

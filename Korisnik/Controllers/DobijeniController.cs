@@ -13,11 +13,11 @@ namespace Korisnik.Controllers
     [Authorize]
     public class DobijeniController : Controller
     {
-        private readonly UserManager<ApplicationKorisnik> userManager;
+        private readonly UserManager<Korisnici> userManager;
         private readonly IIzazoviRepository izazoviRepository;
         private readonly IPrihvaceni_IzazoviRepository prihvaceniIzazovi;
 
-        public DobijeniController(UserManager<ApplicationKorisnik> userManager,                                 
+        public DobijeniController(UserManager<Korisnici> userManager,                                 
                                   IIzazoviRepository izazoviRepository,
                                   IPrihvaceni_IzazoviRepository prihvaceniIzazovi)
         {

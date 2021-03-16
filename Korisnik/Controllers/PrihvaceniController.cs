@@ -15,11 +15,11 @@ namespace Korisnik.Controllers
     public class PrihvaceniController : Controller
     {
 
-        private readonly UserManager<ApplicationKorisnik> userManager;
+        private readonly UserManager<Korisnici> userManager;
         private readonly IPrihvaceni_IzazoviRepository prihvaceniIzazovi;
 
 
-        public PrihvaceniController(UserManager<ApplicationKorisnik> userManager,               
+        public PrihvaceniController(UserManager<Korisnici> userManager,               
                                   IPrihvaceni_IzazoviRepository prihvaceniIzazovi)
         {
             this.userManager = userManager;

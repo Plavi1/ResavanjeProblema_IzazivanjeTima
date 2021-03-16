@@ -31,7 +31,7 @@ namespace Korisnik.Filteri
 
          // 3 PRIMERA OVOG KODA SU NA OVOJ STRANICI, TESTIRATI PERFORMANSE I ISPITATI DA LI JE OVO DOBAR NACIN!           
 
-        public IEnumerable<ApplicationKorisnik> PosaljiIzazovFilterTabele(string idUlogovanog)
+        public IEnumerable<Korisnici> PosaljiIzazovFilterTabele(string idUlogovanog)
         {
             // ----------------------------------------------------------------- TRECI KOD -----------------------------------------------
 

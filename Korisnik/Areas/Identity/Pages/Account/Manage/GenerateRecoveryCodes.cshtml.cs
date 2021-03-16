@@ -12,11 +12,11 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
 {
     public class GenerateRecoveryCodesModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
+        private readonly UserManager<Korisnici> _userManager;
         private readonly ILogger<GenerateRecoveryCodesModel> _logger;
 
         public GenerateRecoveryCodesModel(
-            UserManager<ApplicationKorisnik> userManager,
+            UserManager<Korisnici> userManager,
             ILogger<GenerateRecoveryCodesModel> logger)
         {
             _userManager = userManager;

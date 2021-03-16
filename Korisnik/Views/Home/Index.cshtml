@@ -1,19 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using Korisnik.Models
-@using Korisnik.ViewModel
-
 @model Index_ViewModel
 
-@inject SignInManager<ApplicationKorisnik> SignInManager
-@inject UserManager<ApplicationKorisnik> UserManager
+@inject SignInManager<Korisnici> SignInManager
+@inject UserManager<Korisnici> UserManager
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Dobrodosli</h1>
-    <h4>na glavni interfejs</h4>
-    <hr />
+    <h1 class="display-4"><b>Glavni interfejs</b></h1>
+    <h4> <b style="color:red">ZA KORISNIKE</b></h4>
     @if (TempData["obavestenje"] != null)
     {
         <div class="col-sm-12 text-center">
@@ -24,31 +20,88 @@
     }
     @if (SignInManager.IsSignedIn(User))
     {
-        <div class="btn-group-vertical h-100" style="margin-top:120px">
-            @if (Model.BrojIzazova != "0")
-            {
-                <a type="button" class="btn btn-dark" asp-area="" asp-controller="Poslati" asp-action="Izazov">
-                    Poslata <span class="badge badge-light col-md-3">@Model.BrojIzazova</span>
-                </a>
-            }
-
-            <a type="button" class="btn btn-info btn-lg" asp-area="" asp-controller="Posalji" asp-action="Izazov">Posalji NOV IZAZOV</a>
-
-            @if (Model.IzazvanBroj != "0")
-            {
-                <a type="button" class="btn btn-warning" asp-area="" asp-controller="Dobijeni" asp-action="Izazov">@Model.IzazvanBroj Novi Zahtev na cekanju</a>
-            }
+        <div class="user-card">
+            <div class="user-img">
+                <img src="~/img/user-img.jpg" />
+            </div>
+            <a class="btn btn-info" asp-area="" asp-controller="Posalji" asp-action="Izazov">NOV IZAZOV</a>
+            <hr>
+            <div class="btn-container">
+                <a class="btn btn-dark" asp-area="" asp-controller="Poslati" asp-action="Izazov"><p>Poslati: </p><span>@Model.BrojIzazova</span></a>
+                <a class="btn btn-warning" asp-area="" asp-controller="Dobijeni" asp-action="Izazov"><p>Dobijeni: </p><span>@Model.IzazvanBroj</span></a>
+                <a class="btn btn-success" asp-controller="Prihvaceni" asp-action="Izazov"><p>Prihvaceni: </p><span>@Model.BrojPrihvacenih</span></a>
+            </div>
         </div>
-
-        <br />
-        <br />
-
-        @if (Model.BrojPrihvacenih != "0")
-        {
-            <a type="button" class="btn btn-success" asp-controller="Prihvaceni" asp-action="Izazov">
-                Prihvacena <span class="badge badge-light col-md-3" style="width:auto">@Model.BrojPrihvacenih</span>
-            </a>
-        }
     }
 </div>
+
+
+<style>
+    .user-card {
+        display: block;
+        margin: 50px auto 0 auto;
+        width: 500px;
+        height: 570px;
+        background-color: #464646;
+        border-radius: 3%;
+        text-align: center;
+        padding-top: 30px;
+        color: white;
+        -webkit-box-shadow: 5px 5px 8px 10px #888888;
+        box-shadow: 5px 5px 8px 10px #888888;
+    }
+
+        .user-card hr {
+            background-color: white;
+        }
+
+    .user-img {
+        width: 300px;
+        height: 300px;
+        display: block;
+        margin: 0 auto 10px auto;
+        
+    }
+        .user-img img {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+        }
+
+    .btn-info {
+        margin-bottom: 10px;
+        height: 50px;
+        width: 200px;
+    }
+
+    .btn-container {
+        margin-top: 30px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        height: 90px;
+        width: 100%;
+    }
+
+        .btn-container .btn {
+            position: relative;
+            width: 100%;
+            border-radius: 0;
+            color:white;
+        }
+
+        .btn-container p {
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            font-weight: bold;
+        }
+
+        .btn-container span {
+            position: relative;
+            font-size: 50px;
+            top: 10px;
+        }
+
+</style>
 

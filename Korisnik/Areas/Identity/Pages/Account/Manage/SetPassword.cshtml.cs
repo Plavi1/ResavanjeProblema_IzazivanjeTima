@@ -12,12 +12,12 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
 {
     public class SetPasswordModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
+        private readonly UserManager<Korisnici> _userManager;
+        private readonly SignInManager<Korisnici> _signInManager;
 
         public SetPasswordModel(
-            UserManager<ApplicationKorisnik> userManager,
-            SignInManager<ApplicationKorisnik> signInManager)
+            UserManager<Korisnici> userManager,
+            SignInManager<Korisnici> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

@@ -16,9 +16,9 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
+        private readonly UserManager<Korisnici> _userManager;
 
-        public ResetPasswordModel(UserManager<ApplicationKorisnik> userManager)
+        public ResetPasswordModel(UserManager<Korisnici> userManager)
         {
             _userManager = userManager;
         }

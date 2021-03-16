@@ -14,10 +14,10 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class LogoutModel : PageModel
     {
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
+        private readonly SignInManager<Korisnici> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
 
-        public LogoutModel(SignInManager<ApplicationKorisnik> signInManager, ILogger<LogoutModel> logger)
+        public LogoutModel(SignInManager<Korisnici> signInManager, ILogger<LogoutModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;

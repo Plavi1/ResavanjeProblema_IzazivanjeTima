@@ -12,13 +12,13 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
 {
     public class ResetAuthenticatorModel : PageModel
     {
-        UserManager<ApplicationKorisnik> _userManager;
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
+        UserManager<Korisnici> _userManager;
+        private readonly SignInManager<Korisnici> _signInManager;
         ILogger<ResetAuthenticatorModel> _logger;
 
         public ResetAuthenticatorModel(
-            UserManager<ApplicationKorisnik> userManager,
-            SignInManager<ApplicationKorisnik> signInManager,
+            UserManager<Korisnici> userManager,
+            SignInManager<Korisnici> signInManager,
             ILogger<ResetAuthenticatorModel> logger)
         {
             _userManager = userManager;

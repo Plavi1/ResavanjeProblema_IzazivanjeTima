@@ -15,9 +15,9 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
+        private readonly UserManager<Korisnici> _userManager;
 
-        public ConfirmEmailModel(UserManager<ApplicationKorisnik> userManager)
+        public ConfirmEmailModel(UserManager<Korisnici> userManager)
         {
             _userManager = userManager;
         }

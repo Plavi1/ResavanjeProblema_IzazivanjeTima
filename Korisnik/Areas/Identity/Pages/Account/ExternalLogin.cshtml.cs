@@ -17,14 +17,14 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
-        private readonly UserManager<ApplicationKorisnik> _userManager;
+        private readonly SignInManager<Korisnici> _signInManager;
+        private readonly UserManager<Korisnici> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
 
         public ExternalLoginModel(
-            SignInManager<ApplicationKorisnik> signInManager,
-            UserManager<ApplicationKorisnik> userManager,
+            SignInManager<Korisnici> signInManager,
+            UserManager<Korisnici> userManager,
             ILogger<ExternalLoginModel> logger,
             IEmailSender emailSender)
         {
@@ -123,7 +123,7 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationKorisnik { UserName = Input.Email, Email = Input.Email, Ime = Input.Ime, Prezime = Input.Prezime};
+                var user = new Korisnici { UserName = Input.Email, Email = Input.Email, Ime = Input.Ime, Prezime = Input.Prezime};
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)

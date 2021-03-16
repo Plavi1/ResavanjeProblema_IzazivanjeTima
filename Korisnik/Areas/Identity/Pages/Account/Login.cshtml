@@ -2,8 +2,7 @@
 @model LoginModel
 
 @{ ViewData["Title"] = "Log in";
-                Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml"; }
-
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml"; }
 
 
 <div class="row">
@@ -36,37 +35,42 @@
     <div class="col-md-6 text-center">
         <h3>External Login</h3>
         <hr />
-        @{
-            if (Model.ExternalLogins.Count == 0)
-            {
-                <div>No external logins configured</div>
-            }
-            else
-            {
-                <form method="post" asp-page="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
-                    <div>
-                        @foreach (var provider in Model.ExternalLogins)
+        @{ if (Model.ExternalLogins.Count == 0)
                         {
-                            <button type="submit" class="btn btn-primary"
-                                    name="provider" value="@provider.Name"
-                                    title="Log in using your @provider.DisplayName account"
-                                    style="margin-bottom: 10px">
-                                @provider.DisplayName
-                            </button>
-                        }
-                    </div>
-                </form>
-            }
-        }
+            <div>No external logins configured</div> }
+                        else
+                        {
+            <form method="post" asp-page="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                <div>
+                    @foreach (var provider in Model.ExternalLogins)
+                    {
+    <button type="submit" class="btn btn-primary"
+            name="provider" value="@provider.Name"
+            title="Log in using your @provider.DisplayName account"
+            style="margin-bottom: 10px">
+        @provider.DisplayName
+    </button>}
+                </div>
+            </form> } }
     </div>
 </div>
-<div class="text-center">
-    <div style="color:red"> Da udjete kao <b>Administrator:</b></div>
-    <div><b> Email: </b> Admin@admin.com</div>
-    <div><b> Password: </b> Sifra1</div>
+<h3 class="text-center">Test Accounts</h3>
+<hr />
+<div class="row">
+    <div class="col-md-6" >
+        <span><b style="color:red">Administrator</b></span>
+        <span><b> Email: </b> Admin@admin.com</span>
+        <span><b> Password: </b> Sifra1</span>
+    </div>
+    <div class="col-md-6">
+        <span><b style="color:red">Korisnik(1,2,3,4)</b></span>
+        <span><b> Email: </b> korisnik1@korisnik1.com</span>
+        <span><b> Password: </b> Sifra1</span>
+    </div>
 </div>
-
-
+<style>
+    span {display:block}
+</style>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

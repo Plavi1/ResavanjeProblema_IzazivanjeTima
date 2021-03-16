@@ -17,10 +17,10 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class ForgotPasswordModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
+        private readonly UserManager<Korisnici> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<ApplicationKorisnik> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<Korisnici> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

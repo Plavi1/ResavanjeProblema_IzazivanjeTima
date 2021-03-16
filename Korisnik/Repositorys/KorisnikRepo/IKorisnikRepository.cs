@@ -6,8 +6,8 @@ namespace Korisnik.Models
 {
     public interface IKorisnikRepository
     {
-        IEnumerable<ApplicationKorisnik> SviKorisnici();
-        Task<ApplicationKorisnik> GetKorisnik (string id);
+        IEnumerable<Korisnici> SviKorisnici();
+        Task<Korisnici> GetKorisnik (string id);
 
 
 

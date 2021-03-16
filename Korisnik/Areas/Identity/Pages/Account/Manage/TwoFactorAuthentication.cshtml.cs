@@ -14,13 +14,13 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     {
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}";
 
-        private readonly UserManager<ApplicationKorisnik> _userManager;
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
+        private readonly UserManager<Korisnici> _userManager;
+        private readonly SignInManager<Korisnici> _signInManager;
         private readonly ILogger<TwoFactorAuthenticationModel> _logger;
 
         public TwoFactorAuthenticationModel(
-            UserManager<ApplicationKorisnik> userManager,
-            SignInManager<ApplicationKorisnik> signInManager,
+            UserManager<Korisnici> userManager,
+            SignInManager<Korisnici> signInManager,
             ILogger<TwoFactorAuthenticationModel> logger)
         {
             _userManager = userManager;

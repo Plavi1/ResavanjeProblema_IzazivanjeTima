@@ -12,11 +12,11 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
 {
     public class Disable2faModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
+        private readonly UserManager<Korisnici> _userManager;
         private readonly ILogger<Disable2faModel> _logger;
 
         public Disable2faModel(
-            UserManager<ApplicationKorisnik> userManager,
+            UserManager<Korisnici> userManager,
             ILogger<Disable2faModel> logger)
         {
             _userManager = userManager;

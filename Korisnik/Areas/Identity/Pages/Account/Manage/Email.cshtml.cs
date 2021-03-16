@@ -16,13 +16,13 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
 {
     public partial class EmailModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
+        private readonly UserManager<Korisnici> _userManager;
+        private readonly SignInManager<Korisnici> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public EmailModel(
-            UserManager<ApplicationKorisnik> userManager,
-            SignInManager<ApplicationKorisnik> signInManager,
+            UserManager<Korisnici> userManager,
+            SignInManager<Korisnici> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -50,7 +50,7 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
             public string NewEmail { get; set; }
         }
 
-        private async Task LoadAsync(ApplicationKorisnik user)
+        private async Task LoadAsync(Korisnici user)
         {
             var email = await _userManager.GetEmailAsync(user);
             Email = email;

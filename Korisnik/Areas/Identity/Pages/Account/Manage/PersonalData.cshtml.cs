@@ -9,11 +9,11 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
 {
     public class PersonalDataModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
+        private readonly UserManager<Korisnici> _userManager;
         private readonly ILogger<PersonalDataModel> _logger;
 
         public PersonalDataModel(
-            UserManager<ApplicationKorisnik> userManager,
+            UserManager<Korisnici> userManager,
             ILogger<PersonalDataModel> logger)
         {
             _userManager = userManager;

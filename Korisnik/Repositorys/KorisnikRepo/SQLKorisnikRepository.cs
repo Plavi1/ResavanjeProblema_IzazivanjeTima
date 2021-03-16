@@ -18,13 +18,13 @@ namespace Korisnik.Models
             
         }
 
-        public async Task<ApplicationKorisnik> GetKorisnik (string id)
+        public async Task<Korisnici> GetKorisnik (string id)
         {
           
             return await context.Users.FindAsync(id);
         }
 
-        public IEnumerable<ApplicationKorisnik> SviKorisnici()
+        public IEnumerable<Korisnici> SviKorisnici()
         {
 
             return context.Users;

@@ -17,7 +17,7 @@ namespace Korisnik.Controllers
     [Authorize(Roles = "SuperAdmin")]
     public class AdministratorController : Controller
     {
-        private readonly UserManager<ApplicationKorisnik> userManager;
+        private readonly UserManager<Korisnici> userManager;
         private readonly IPrihvaceni_IzazoviRepository prihvaceniIzazovi;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IOgranicenjaRepository ogranicenjaRepository;
@@ -27,7 +27,7 @@ namespace Korisnik.Controllers
 
         public AdministratorController(IKorisnikRepository korisnikRepository,
                               IIzazoviRepository izazoviRepository,
-                              UserManager<ApplicationKorisnik> userManager,
+                              UserManager<Korisnici> userManager,
                               IPrihvaceni_IzazoviRepository prihvaceniIzazovi,
                               RoleManager<IdentityRole> roleManager, 
                               IOgranicenjaRepository ogranicenjaRepository,
@@ -511,7 +511,7 @@ namespace Korisnik.Controllers
 
             NapraviIzazov_ViewModel mymodel = new NapraviIzazov_ViewModel();
 
-            IEnumerable<ApplicationKorisnik> lista = filteri.PosaljiIzazovFilterTabele(idUlogovanog);     
+            IEnumerable<Korisnici> lista = filteri.PosaljiIzazovFilterTabele(idUlogovanog);     
 
             mymodel.ApplicationKorisnik = lista;                                                          
 
@@ -554,7 +554,7 @@ namespace Korisnik.Controllers
             }
 
             var idUlogovanog = userManager.GetUserId(HttpContext.User);
-            IEnumerable<ApplicationKorisnik> lista = filteri.PosaljiIzazovFilterTabele(idUlogovanog);
+            IEnumerable<Korisnici> lista = filteri.PosaljiIzazovFilterTabele(idUlogovanog);
 
             NapraviIzazov_ViewModel ponovo = new NapraviIzazov_ViewModel
             {

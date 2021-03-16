@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Korisnik.Models
 
-@inject SignInManager<ApplicationKorisnik> SignInManager
-@inject UserManager<ApplicationKorisnik> UserManager
+@inject SignInManager<Korisnici> SignInManager
+@inject UserManager<Korisnici> UserManager
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))

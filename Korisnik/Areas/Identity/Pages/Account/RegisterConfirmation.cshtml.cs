@@ -13,10 +13,10 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
+        private readonly UserManager<Korisnici> _userManager;
         private readonly IEmailSender _sender;
 
-        public RegisterConfirmationModel(UserManager<ApplicationKorisnik> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(UserManager<Korisnici> userManager, IEmailSender sender)
         {
             _userManager = userManager;
             _sender = sender;

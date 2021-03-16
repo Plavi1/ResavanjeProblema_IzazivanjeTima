@@ -15,9 +15,9 @@ namespace Korisnik.Controllers
     public class PoslatiController : Controller
     {
         private readonly IIzazoviRepository izazoviRepository;
-        private readonly UserManager<ApplicationKorisnik> userManager;
+        private readonly UserManager<Korisnici> userManager;
 
-        public PoslatiController(IIzazoviRepository izazoviRepository, UserManager<ApplicationKorisnik> userManager)
+        public PoslatiController(IIzazoviRepository izazoviRepository, UserManager<Korisnici> userManager)
         {
             this.izazoviRepository = izazoviRepository;
             this.userManager = userManager;

@@ -7,7 +7,7 @@ namespace Korisnik.ViewModel
 {
     public class PosaljiIzazov_ViewModel
     {
-        public IEnumerable<ApplicationKorisnik> ApplicationKorisnik { get; set; }
+        public IEnumerable<Korisnici> ApplicationKorisnik { get; set; }
 
         [Required]
         public string IdIzazvanog { get; set; }

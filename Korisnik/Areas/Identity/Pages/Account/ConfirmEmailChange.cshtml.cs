@@ -15,10 +15,10 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class ConfirmEmailChangeModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
+        private readonly UserManager<Korisnici> _userManager;
+        private readonly SignInManager<Korisnici> _signInManager;
 
-        public ConfirmEmailChangeModel(UserManager<ApplicationKorisnik> userManager, SignInManager<ApplicationKorisnik> signInManager)
+        public ConfirmEmailChangeModel(UserManager<Korisnici> userManager, SignInManager<Korisnici> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

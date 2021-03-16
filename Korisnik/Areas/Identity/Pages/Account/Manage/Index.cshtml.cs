@@ -12,12 +12,12 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
+        private readonly UserManager<Korisnici> _userManager;
+        private readonly SignInManager<Korisnici> _signInManager;
 
         public IndexModel(
-            UserManager<ApplicationKorisnik> userManager,
-            SignInManager<ApplicationKorisnik> signInManager)
+            UserManager<Korisnici> userManager,
+            SignInManager<Korisnici> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -38,7 +38,7 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
             public string PhoneNumber { get; set; }
         }
 
-        private async Task LoadAsync(ApplicationKorisnik user)
+        private async Task LoadAsync(Korisnici user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

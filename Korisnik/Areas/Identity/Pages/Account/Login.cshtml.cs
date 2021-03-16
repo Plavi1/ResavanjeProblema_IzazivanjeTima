@@ -15,13 +15,13 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
+        private readonly UserManager<Korisnici> _userManager;
+        private readonly SignInManager<Korisnici> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<ApplicationKorisnik> signInManager, 
+        public LoginModel(SignInManager<Korisnici> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<ApplicationKorisnik> userManager)
+            UserManager<Korisnici> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

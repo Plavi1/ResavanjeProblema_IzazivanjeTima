@@ -5,6 +5,6 @@ namespace Korisnik.Filteri
 {
     public interface IFilter
     {
-        IEnumerable<ApplicationKorisnik> PosaljiIzazovFilterTabele(string idUlogovanog);
+        IEnumerable<Korisnici> PosaljiIzazovFilterTabele(string idUlogovanog);
     }
 }

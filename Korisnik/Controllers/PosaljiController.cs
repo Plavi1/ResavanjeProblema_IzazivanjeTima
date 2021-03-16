@@ -16,13 +16,13 @@ namespace Korisnik.Controllers
     [Authorize]
     public class PosaljiController : Controller
     {
-        private readonly UserManager<ApplicationKorisnik> userManager;
+        private readonly UserManager<Korisnici> userManager;
         private readonly IKorisnikRepository korisnikRepository;
         private readonly IIzazoviRepository izazoviRepository;
         private readonly IFilter filteri;
         
 
-        public PosaljiController(UserManager<ApplicationKorisnik> userManager,
+        public PosaljiController(UserManager<Korisnici> userManager,
                                   IKorisnikRepository korisnikRepository,
                                   IIzazoviRepository izazoviRepository,
                                   IFilter filteri)
@@ -44,7 +44,7 @@ namespace Korisnik.Controllers
 
             PosaljiIzazov_ViewModel mymodel = new PosaljiIzazov_ViewModel();
 
-            IEnumerable<ApplicationKorisnik> lista = filteri.PosaljiIzazovFilterTabele(idUlogovanog);      // Metoda gore navedena  
+            IEnumerable<Korisnici> lista = filteri.PosaljiIzazovFilterTabele(idUlogovanog);      // Metoda gore navedena  
             
             mymodel.ApplicationKorisnik = lista;                                                           // Prebacujemo u nas ViewModel vrednost za ApplicationKorisnik
 
@@ -98,7 +98,7 @@ namespace Korisnik.Controllers
             
             //Treba napraviti klasu koja ce pozivati ovaj filter za tabelu, da bi mogli da pozovemo metodu u PosaljiIzazov_VievModel
 
-            IEnumerable<ApplicationKorisnik> lista = filteri.PosaljiIzazovFilterTabele(idUlogovanog);
+            IEnumerable<Korisnici> lista = filteri.PosaljiIzazovFilterTabele(idUlogovanog);
 
             PosaljiIzazov_ViewModel ponovo = new PosaljiIzazov_ViewModel {
                 ApplicationKorisnik = lista,                                                 //{ --  Dodeljujemo ViewModelu   

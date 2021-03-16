@@ -15,7 +15,7 @@ namespace Korisnik.Models
         [Required]
         [Column(Order = 1)]
         public string IdIzazivaoca { get; set; }
-        public ApplicationKorisnik Korisnik { get; set; }
+        public Korisnici Korisnik { get; set; }
 
        
         [Required]

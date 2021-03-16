@@ -15,10 +15,10 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class LoginWith2faModel : PageModel
     {
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
+        private readonly SignInManager<Korisnici> _signInManager;
         private readonly ILogger<LoginWith2faModel> _logger;
 
-        public LoginWith2faModel(SignInManager<ApplicationKorisnik> signInManager, ILogger<LoginWith2faModel> logger)
+        public LoginWith2faModel(SignInManager<Korisnici> signInManager, ILogger<LoginWith2faModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;

@@ -16,10 +16,10 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class ResendEmailConfirmationModel : PageModel
     {
-        private readonly UserManager<ApplicationKorisnik> _userManager;
+        private readonly UserManager<Korisnici> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ResendEmailConfirmationModel(UserManager<ApplicationKorisnik> userManager, IEmailSender emailSender)
+        public ResendEmailConfirmationModel(UserManager<Korisnici> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

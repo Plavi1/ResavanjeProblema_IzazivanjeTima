@@ -20,14 +20,14 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<ApplicationKorisnik> _signInManager;
-        private readonly UserManager<ApplicationKorisnik> _userManager;
+        private readonly SignInManager<Korisnici> _signInManager;
+        private readonly UserManager<Korisnici> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<ApplicationKorisnik> userManager,
-            SignInManager<ApplicationKorisnik> signInManager,
+            UserManager<Korisnici> userManager,
+            SignInManager<Korisnici> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -89,7 +89,7 @@ namespace Korisnik.Areas.Identity.Pages.Account.Manage
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationKorisnik { UserName = Input.Email, Email = Input.Email, Ime=Input.Ime, Prezime=Input.Prezime };
+                var user = new Korisnici { UserName = Input.Email, Email = Input.Email, Ime=Input.Ime, Prezime=Input.Prezime };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

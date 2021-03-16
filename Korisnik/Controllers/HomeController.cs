@@ -15,20 +15,20 @@ namespace ASPNETCOREMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserManager<ApplicationKorisnik> userManager;
+        private readonly UserManager<Korisnici> userManager;
         private readonly IPrihvaceni_IzazoviRepository prihvaceniIzazovi;
         private readonly IKorisnikRepository korisnikRepository;
         private readonly IIzazoviRepository izazoviRepository;
         private readonly ILogger<HomeController> _logger;
-        private readonly SignInManager<ApplicationKorisnik> signInManager;
+        private readonly SignInManager<Korisnici> signInManager;
         private readonly IOgranicenjaRepository ogranicenjaRepository;
 
         public HomeController(ILogger<HomeController> logger, 
                               IKorisnikRepository korisnikRepository, 
                               IIzazoviRepository izazoviRepository,
-                              UserManager<ApplicationKorisnik> userManager,
+                              UserManager<Korisnici> userManager,
                               IPrihvaceni_IzazoviRepository prihvaceniIzazovi,
-                              SignInManager<ApplicationKorisnik> signInManager,
+                              SignInManager<Korisnici> signInManager,
                               IOgranicenjaRepository ogranicenjaRepository)
         {
             this.userManager = userManager;

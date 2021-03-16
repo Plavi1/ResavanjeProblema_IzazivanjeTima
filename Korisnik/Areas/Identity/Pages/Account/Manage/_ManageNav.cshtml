@@ -1,4 +1,4 @@
-﻿@inject SignInManager<ApplicationKorisnik> SignInManager
+﻿@inject SignInManager<Korisnici> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

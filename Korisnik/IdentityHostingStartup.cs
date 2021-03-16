@@ -17,7 +17,7 @@ namespace Korisnik
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("KorisnikDbContextConnection")));
 
-                services.AddDefaultIdentity<ApplicationKorisnik>(options => {
+                services.AddDefaultIdentity<Korisnici>(options => {
                     options.SignIn.RequireConfirmedAccount = false;      // Ne mora da se potvrdi account, to jest ne mora da ulazi na email da bi potvrdio
                     options.Password.RequireLowercase = false;           // Ubacili smo da ne treba mala 
                     options.Password.RequireUppercase = false;           //    ,velika slova
