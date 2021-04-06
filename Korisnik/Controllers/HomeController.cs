@@ -77,16 +77,13 @@ namespace ASPNETCOREMVC.Controllers
         [HttpGet]
         public IActionResult Index(Index_ViewModel model)
         {
-            var ulogovan = signInManager.IsSignedIn(User);
-            
-            if (ulogovan == false)
+            if (!signInManager.IsSignedIn(User))
             {
                 return RedirectToAction("Pocetna");
             }
             else
             {
-                var admin = User.IsInRole("SuperAdmin");
-                if (admin == true)
+                if (User.IsInRole("SuperAdmin"))
                 {
                     return RedirectToAction("Administrator");
                 }

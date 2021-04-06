@@ -4,7 +4,14 @@
 @{ ViewData["Title"] = "Log in";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml"; }
 
-
+<style>
+    .avatar img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+</style>
 <div class="row">
     <div class="col-md-6">
         <h3>Local Account Login</h3>
@@ -36,41 +43,99 @@
         <h3>External Login</h3>
         <hr />
         @{ if (Model.ExternalLogins.Count == 0)
-                        {
-            <div>No external logins configured</div> }
-                        else
-                        {
-            <form method="post" asp-page="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
-                <div>
-                    @foreach (var provider in Model.ExternalLogins)
-                    {
-    <button type="submit" class="btn btn-primary"
-            name="provider" value="@provider.Name"
-            title="Log in using your @provider.DisplayName account"
-            style="margin-bottom: 10px">
-        @provider.DisplayName
-    </button>}
-                </div>
-            </form> } }
+            {
+<div>No external logins configured</div> }
+else
+{
+<form method="post" asp-page="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+    <div>
+        @foreach (var provider in Model.ExternalLogins)
+        {
+<button type="submit" class="btn btn-primary"
+        name="provider" value="@provider.Name"
+        title="Log in using your @provider.DisplayName account"
+        style="margin-bottom: 10px">
+    @provider.DisplayName
+</button>}
+    </div>
+</form> } }
     </div>
 </div>
-<h3 class="text-center">Test Accounts</h3>
+<h4 class="text-center" style="color:red">Test Accounts</h4>
 <hr />
-<div class="row">
-    <div class="col-md-6" >
-        <span><b style="color:red">Administrator</b></span>
-        <span><b> Email: </b> Admin@admin.com</span>
-        <span><b> Password: </b> Sifra1</span>
-    </div>
-    <div class="col-md-6">
-        <span><b style="color:red">Korisnik(1,2,3,4)</b></span>
-        <span><b> Email: </b> korisnik1@korisnik1.com</span>
-        <span><b> Password: </b> Sifra1</span>
-    </div>
+<div class="row col-md-12 justify-content-center test-container">
+    <form id="account" method="post">
+        <div class="k-container">
+            <div class="avatar">
+                <img id="5" src="~/img/Admin-avatar.jpg" />
+            </div>
+            <span><b style="color:red">Administrator</b></span>
+        </div>
+        <input hidden asp-for="Input.Email" value="Admin@admin.com" />
+        <input hidden asp-for="Input.Password" value="Sifra1" />
+        <button hidden id="sub-5" type="submit"></button>
+    </form>
+    <form id="account" method="post">
+        <div class="k-container">
+            <div class="avatar">
+                <img id="1" src="~/img/avatar1.jpg" />
+            </div>
+            <span style="margin-left:1.5em;">Korisnik 1</span>
+        </div>
+        <input hidden asp-for="Input.Email" value="Korisnik1@korisnik1.com" />
+        <input hidden asp-for="Input.Password" value="Sifra1" />
+        <button hidden id="sub-1" type="submit"></button>
+    </form>
+    <form id="account" method="post">
+        <div class="k-container">
+            <div class="avatar">
+                <img id="2" src="~/img/avatar1.jpg" />
+            </div>
+            <span style="margin-left:1.5em;">Korisnik 2</span>
+        </div>
+        <input hidden asp-for="Input.Email" value="Korisnik2@korisnik2.com" />
+        <input hidden asp-for="Input.Password" value="Sifra1" />
+        <button hidden id="sub-2" type="submit"></button>
+    </form>
+    <form id="account" method="post">
+        <div class="k-container">
+            <div class="avatar">
+                <img id="3" src="~/img/avatar1.jpg" />
+            </div>
+            <span style="margin-left:1.5em;">Korisnik 3</span>
+        </div>
+        <input hidden asp-for="Input.Email" value="Korisnik3@korisnik3.com" />
+        <input hidden asp-for="Input.Password" value="Sifra1" />
+        <button hidden id="sub-3" type="submit"></button>
+    </form>
+    <form id="account" method="post">
+        <div class="k-container">
+            <div class="avatar">
+                <img id="4" src="~/img/avatar1.jpg" />
+            </div>
+            <span style="margin-left:1.5em;">Korisnik 4</span>
+        </div>
+        <input hidden asp-for="Input.Email" value="Korisnik4@korisnik4.com" />
+        <input hidden asp-for="Input.Password" value="Sifra1" />
+        <button hidden id="sub-4" type="submit"></button>
+    </form>
 </div>
 <style>
-    span {display:block}
+    span {
+        display: block
+    }
+    .k-container{
+        margin-left: 10px;
+    }
 </style>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+    $(document).ready(function () {
+        $(".test-container .avatar img").on('click', function () {
+            var id = $(this).attr('id');
+            $('.test-container #sub-' + id).click();
+        });
+    });
+    </script>
 }

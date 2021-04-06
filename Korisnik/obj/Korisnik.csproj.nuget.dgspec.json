@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pc\\Desktop\\ASP.NET Core MVC VEZBA\\1.ZADATAK\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj": {}
+    "C:\\Users\\pc\\Desktop\\acc i zavrseni projekti\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pc\\Desktop\\ASP.NET Core MVC VEZBA\\1.ZADATAK\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj": {
+    "C:\\Users\\pc\\Desktop\\acc i zavrseni projekti\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pc\\Desktop\\ASP.NET Core MVC VEZBA\\1.ZADATAK\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj",
+        "projectUniqueName": "C:\\Users\\pc\\Desktop\\acc i zavrseni projekti\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj",
         "projectName": "Korisnik",
-        "projectPath": "C:\\Users\\pc\\Desktop\\ASP.NET Core MVC VEZBA\\1.ZADATAK\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj",
+        "projectPath": "C:\\Users\\pc\\Desktop\\acc i zavrseni projekti\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj",
         "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pc\\Desktop\\ASP.NET Core MVC VEZBA\\1.ZADATAK\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\obj\\",
+        "outputPath": "C:\\Users\\pc\\Desktop\\acc i zavrseni projekti\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",

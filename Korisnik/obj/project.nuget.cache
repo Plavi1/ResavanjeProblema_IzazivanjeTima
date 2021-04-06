@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d6N1zE59+7qqOabCp2c+WOZfB04rjjoU5tcyaZUklGZeDfayeVGi2m8u/Wg7sfxs9jlYNdSosu2o5hIWUokN9Q==",
+  "dgSpecHash": "RKrcEFj0rQMV/vk7Vof4R0eZtkWNJVLpMktJ28EkOWeTO0+KKvOAZgQ8EWT5SpTNyiD9LmWOEQZwjC0JSL6+Vg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pc\\Desktop\\ASP.NET Core MVC VEZBA\\1.ZADATAK\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj",
+  "projectFilePath": "C:\\Users\\pc\\Desktop\\acc i zavrseni projekti\\ResavanjeProblema_IzazivanjeTima-master\\Korisnik\\Korisnik.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pc\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\5.0.1\\microsoft.aspnetcore.authentication.google.5.0.1.nupkg.sha512",
